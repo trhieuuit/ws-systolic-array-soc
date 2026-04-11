@@ -1,0 +1,14 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x0",
+      "device": "xck26-sfvc784-2LV-c",
+      "gen_directory": "../../../../systolic_array.gen/sources_1/bd/systolic_array",
+      "name": "systolic_array",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2025.1"
+    },
+    "design_tree": {}
+  }
+}
