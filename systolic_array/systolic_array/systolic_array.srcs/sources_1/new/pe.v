@@ -3,7 +3,7 @@
 module pe(
     input  wire               clk_i,
     input  wire               rst_n,
-    input  wire               load_i,      // Load weight signal
+    input  wire               loadw_i,     // Load weight signal
     input  wire               en_i,        // Activate PE
     input  wire signed [7:0]  input_i,     // Cascaded input (from the left) 
     input  wire signed [7:0]  weight_i,   
@@ -15,7 +15,6 @@ module pe(
 );
     // Register declaration
     reg [31:0] psum_r;
-    reg  signed [7:0] weight_o;
     
     // Combinational output
     wire signed [15:0] mul = input_i * weight_o;
@@ -26,7 +25,7 @@ module pe(
             weight_o <= 8'b0;
             input_o  <= 8'b0;
             psum_r   <= 32'b0;
-        end else if (load_i) begin
+        end else if (loadw_i) begin
             weight_o <= weight_i;
         end else if (en_i) begin
             psum_r  <= psum_i; 

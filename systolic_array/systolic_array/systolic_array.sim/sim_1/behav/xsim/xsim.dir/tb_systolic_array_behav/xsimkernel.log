@@ -1,0 +1,7 @@
+Running: xsim.dir/tb_systolic_array_behav/xsimk.exe -simmode gui -wdb tb_systolic_array_behav.wdb -simrunnum 0 -socket 56843
+Design successfully loaded
+Design Loading Memory Usage: 12532 KB (Peak: 12532 KB)
+Design Loading CPU Usage: 31 ms
+Simulation completed
+Simulation Memory Usage: 14176 KB (Peak: 14176 KB)
+Simulation CPU Usage: 108 ms

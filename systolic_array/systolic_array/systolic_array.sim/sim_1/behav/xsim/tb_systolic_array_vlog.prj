@@ -1,0 +1,16 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "D:/Vivado/2025.1/Vivado/data/rsb/busdef" \
+"../../../../systolic_array.srcs/sources_1/new/controller.v" \
+"../../../../systolic_array.srcs/sources_1/new/input_fifo.v" \
+"../../../../systolic_array.srcs/sources_1/new/output_fifo.v" \
+"../../../../systolic_array.srcs/sources_1/new/pe.v" \
+"../../../../systolic_array.srcs/sources_1/new/pe_grid.v" \
+"../../../../systolic_array.srcs/sources_1/new/systolic_array.v" \
+"../../../../systolic_array.srcs/sources_1/new/weight_fifo.v" \
+"../../../../systolic_array.srcs/sim_1/new/tb_systolic_array.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
