@@ -35,6 +35,7 @@ module weight_fifo(
     output wire         empty_o,
     output wire [127:0] dout_o
     );
+
     
 //////////////////////////////////////////////////////////////////////////////////
 //                             Weight FIFO declaration                          //

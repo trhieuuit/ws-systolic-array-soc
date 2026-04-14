@@ -32,16 +32,18 @@ module systolic_array(
 
 //////////////////////////////////////////////////////////////////////////////////
 //                                  Controller                                  //
-//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////\
+    wire pe_loadw_w;
     controller ctrl(
         .clk_i (clk_i),
         .rst_n  (rst_n),          
-        .loadw_i (loadw_i),   // Load weight signal
+        .loadw_i (loadw_i),          // Load weight signal
         .start_i (start_i),        // Start execution + output collection
         
         .in_ff_rd_o (inff_rd_w),       // Input FIFO read (only applies to the first FIFO, latter ones are mapped to shift register)
         .w_ff_rd_o (wff_rd_w),      // Weight FIFO read (applies to all FIFO)
         .out_ff_wr_o (outff_wr_w),    // Output FIFO write (only applies to the first FIFO, latter ones are mapped to shift register)
+        .pe_loadw_o (pe_loadw_w),
         .pe_en_o      (pe_en_w),        // PE enable signal
         .done_o (done_o)
     );
@@ -108,12 +110,12 @@ module systolic_array(
 //                                 16x16 PE grid                                //
 //////////////////////////////////////////////////////////////////////////////////
     pe_grid pe_grid (
-         .clk_i (clk_i),
-        .rst_n (rst_n),
-        .loadw_i (loadw_i),
-        .en_i (pe_en_w),
+         .clk_i   (clk_i),
+        .rst_n    (rst_n),
+        .loadw_i  (pe_loadw_w),
+        .en_i     (pe_en_w),
         .weight_i (wff_dout_w),
-        .input_i (inff_dout_w),
+        .input_i  (inff_dout_w),
         .output_o (outff_din_w) 
     );
     

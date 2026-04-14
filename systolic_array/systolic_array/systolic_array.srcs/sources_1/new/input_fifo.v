@@ -15,6 +15,7 @@ module input_fifo (
     output wire         empty_o,
     output wire [127:0] dout_o
 );
+    parameter ROW = 16, COL = 16;
 
 //////////////////////////////////////////////////////////////////////////////////
 //                             Input FIFO declaration                           //
@@ -93,7 +94,6 @@ module input_fifo (
                 // The final output of this row's chain goes to the systolic array
                 assign pe_input_data_w[r] = inff_delay_r[r][r-1];
             end
-            
         end
     endgenerate
   

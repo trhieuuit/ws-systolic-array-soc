@@ -99,9 +99,9 @@ module tb_systolic_array();
         @(posedge dma_clk_i);
         for (i = 0; i < 16; i = i + 1) begin
             wff_wr_en_i = 1;
-            // Encode exactly where this weight belongs: Upper Nibble = Row, Lower = Col
+            // ROW-DEPENDENT: Row 0 gets 1s, Row 1 gets 2s... Row 15 gets 16s (0x10)
             for (j = 0; j < 16; j = j + 1) begin
-                wff_din_i[j*8 +: 8] = i; 
+                wff_din_i[j*8 +: 8] = j + 1; 
             end
             @(posedge dma_clk_i);
         end
@@ -120,14 +120,14 @@ module tb_systolic_array();
         // Wait for weight loading state to finish
         #300; 
 
-        // D. Load Inputs into XPM FIFO (From DMA)
+       // D. Load Inputs into XPM FIFO (From DMA)
         $display("[%0t] DMA: Streaming Inputs to FIFO...", $time);
         @(posedge dma_clk_i);
         for (i = 0; i < 16; i = i + 1) begin
             inff_wr_en_i = 1;
-            // Encode Inputs: Upper Nibble = Row + A (to distinguish from weights), Lower = Col
+            // COLUMN-DEPENDENT: Col 0 gets 1s, Col 1 gets 2s... Col 15 gets 16s (0x10)
             for (j = 0; j < 16; j = j + 1) begin
-                inff_din_i[j*8 +: 8] = 1; 
+                inff_din_i[j*8 +: 8] = i + 1; 
             end
             @(posedge dma_clk_i);
         end

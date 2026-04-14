@@ -31,7 +31,7 @@ module controller(
             IDLE: next_state_r = loadw_i ? LOAD_WEIGHT : (start_i ? LOAD_INPUT : IDLE);
             LOAD_WEIGHT: next_state_r = (counter_r == 4'd15) ? IDLE : LOAD_WEIGHT; 
             LOAD_INPUT: next_state_r = (counter_r == 4'd15) ? WAIT : LOAD_INPUT;
-            WAIT: next_state_r = (counter_r == 4'd14) ? RESULT_COLLECT : WAIT;
+            WAIT: next_state_r = (counter_r == 4'd13) ? RESULT_COLLECT : WAIT;
             RESULT_COLLECT: next_state_r = (counter_r == 4'd15) ? IDLE : RESULT_COLLECT;
             default: next_state_r = IDLE;
         endcase
