@@ -3,7 +3,14 @@
 module tb_systolic_array();
 
     // -------------------------------------------------------------------------
-    // 1. Signal Declarations
+    // 1. Parameter Configuration
+    // -------------------------------------------------------------------------
+    parameter N = 4;
+    parameter DATA_WIDTH = 8;
+    parameter PSUM_WIDTH = 32;
+
+    // -------------------------------------------------------------------------
+    // 2. Signal Declarations
     // -------------------------------------------------------------------------
     reg          clk_i;
     reg          rst_n;
@@ -14,23 +21,37 @@ module tb_systolic_array();
     reg          dma_clk_i;
     
     reg          wff_wr_en_i;
-    reg  [127:0] wff_din_i;
+    reg  [(N*DATA_WIDTH)-1:0] wff_din_i;
     wire         wff_full_o;
     
     reg          inff_wr_en_i;
-    reg  [127:0] inff_din_i;
+    reg  [(N*DATA_WIDTH)-1:0] inff_din_i;
     wire         inff_full_o;
     
     reg          outff_rd_en_i;
-    wire [511:0] outff_dout_o;
+    wire [(N*PSUM_WIDTH)-1:0] outff_dout_o;
     wire         outff_empty_o;
 
-    integer i, j;
+    wire rst_high_w = ~rst_n;
+    // -------------------------------------------------------------------------
+    // 3. Golden Model Matrices for Self-Checking
+    // -------------------------------------------------------------------------
+    reg signed [DATA_WIDTH-1:0] A_mat [0:N-1][0:N-1];  // Input Matrix
+    reg signed [DATA_WIDTH-1:0] B_mat [0:N-1][0:N-1];  // Weight Matrix
+    reg signed [PSUM_WIDTH-1:0] C_gold [0:N-1][0:N-1]; // Expected Output Matrix
+    reg signed [PSUM_WIDTH-1:0] C_act  [0:N-1][0:N-1]; // Actual Output from Hardware
+    
+    integer i, j, k;
+    integer error_count = 0;
 
     // -------------------------------------------------------------------------
-    // 2. DUT Instantiation
+    // 4. DUT Instantiation
     // -------------------------------------------------------------------------
-    systolic_array dut (
+    systolic_array #(
+        .N(N),
+        .DATA_WIDTH(DATA_WIDTH),
+        .PSUM_WIDTH(PSUM_WIDTH)
+    ) dut (
         .clk_i         (clk_i),
         .rst_n         (rst_n),
         .start_i       (start_i),
@@ -53,15 +74,13 @@ module tb_systolic_array();
     );
 
     // -------------------------------------------------------------------------
-    // 3. Clocks
+    // 5. Clock Generation
     // -------------------------------------------------------------------------
-    // 100 MHz System Clock
     initial begin
         clk_i = 0;
         forever #5 clk_i = ~clk_i;
     end
 
-    // 100 MHz DMA Clock (Phase shifted to test Cross-Clock Domain CDC safely)
     initial begin
         dma_clk_i = 0;
         #2; 
@@ -69,127 +88,165 @@ module tb_systolic_array();
     end
 
     // -------------------------------------------------------------------------
-    // 4. Main Test Sequence
+    // 6. TASKS: Golden Model Generation and Calculation
+    // -------------------------------------------------------------------------
+    task generate_and_calc_golden();
+    begin
+        // Generate random numbers for Input (A) and Weight (B)
+        for (i = 0; i < N; i = i + 1) begin
+            for (j = 0; j < N; j = j + 1) begin
+                A_mat[i][j] = $urandom_range(1, 10); // Range 1-5 for readable output
+                B_mat[i][j] = $urandom_range(1, 10); 
+            end
+        end
+        
+        // Calculate expected Result: C = A * B
+        for (i = 0; i < N; i = i + 1) begin
+            for (j = 0; j < N; j = j + 1) begin
+                C_gold[i][j] = 0;
+                for (k = 0; k < N; k = k + 1) begin
+                    C_gold[i][j] = C_gold[i][j] + (A_mat[i][k] * B_mat[k][j]);
+                end
+            end
+        end
+        
+        // Print matrices to console for reference
+        $display("\n--- MATRIX A (INPUTS) ---");
+        for (i = 0; i < N; i = i + 1) begin
+            $write("Row %0d: ", i);
+            for (j = 0; j < N; j = j + 1) $write("%4d ", A_mat[i][j]);
+            $display("");
+        end
+        
+        $display("\n--- MATRIX B (WEIGHTS) ---");
+        for (i = 0; i < N; i = i + 1) begin
+            $write("Row %0d: ", i);
+            for (j = 0; j < N; j = j + 1) $write("%4d ", B_mat[i][j]);
+            $display("");
+        end
+        
+        $display("\n--- EXPECTED MATRIX C (GOLDEN) ---");
+        for (i = 0; i < N; i = i + 1) begin
+            $write("Row %0d: ", i);
+            for (j = 0; j < N; j = j + 1) $write("%4d ", C_gold[i][j]);
+            $display("");
+        end
+        $display("----------------------------------\n");
+    end
+    endtask
+
+    // -------------------------------------------------------------------------
+    // 7. MAIN TEST SEQUENCE
     // -------------------------------------------------------------------------
     initial begin
-        // A. Init
+        // Initialize signals
         rst_n         = 0;
         start_i       = 0;
         loadw_i       = 0;
         wff_wr_en_i   = 0;
-        wff_din_i     = 128'd0;
+        wff_din_i     = 0;
         inff_wr_en_i  = 0;
-        inff_din_i    = 128'd0;
+        inff_din_i    = 0;
         outff_rd_en_i = 0;
 
         $display("==================================================");
-        $display("[%0t] Resetting System...", $time);
-        #100;
-        rst_n = 1;
+        $display("   STARTING SYSTOLIC ARRAY SELF-CHECKING TB (N=%0d)", N);
+        $display("==================================================");
         
-        // FIX: Wait for Async FIFO to clear its 'rst_busy' flags!
-        // 10 cycles (#100) is not enough. We give it 200 cycles here.
-        #2000; 
+        // Generate test vectors and golden result
+        generate_and_calc_golden();
 
-        // B. Load Weights into XPM FIFO (From DMA)
-        $display("[%0t] DMA: Streaming Weights to FIFO...", $time);
+        // A. System Reset
+        #100; rst_n = 1;
+        #2000; // Wait for XPM Async FIFO cross-clock domain logic to settle
 
-        // B. Load Weights into XPM FIFO (From DMA)
-        $display("[%0t] DMA: Streaming Weights to FIFO...", $time);
+        // B. Stream Weights into FIFO 
+        // Note: Weights must be pushed from Row N-1 down to 0 to align correctly in the PE grid
+        $display("[%0t] Pushing Weights...", $time);
         @(posedge dma_clk_i);
-        for (i = 0; i < 16; i = i + 1) begin
+        for (i = N-1; i >= 0; i = i - 1) begin
             wff_wr_en_i = 1;
-            // ROW-DEPENDENT: Row 0 gets 1s, Row 1 gets 2s... Row 15 gets 16s (0x10)
-            for (j = 0; j < 16; j = j + 1) begin
-                wff_din_i[j*8 +: 8] = j + 1; 
+            for (j = 0; j < N; j = j + 1) begin
+                wff_din_i[j*DATA_WIDTH +: DATA_WIDTH] = B_mat[i][j]; 
             end
             @(posedge dma_clk_i);
         end
         wff_wr_en_i = 0;
-
-        // Wait for XPM Async FIFO pointers to cross the clock domain (CDC Delay)
         #100;
 
-        // C. Controller triggers Weight Load into PE Grid
-        $display("[%0t] CTRL: Pulsing loadw_i. Watch the PE grid swallow the weights!", $time);
-        @(posedge clk_i);
-        loadw_i = 1;
-        @(posedge clk_i);
-        loadw_i = 0;
+        // C. Trigger Weight Load
+        @(posedge clk_i); loadw_i = 1;
+        @(posedge clk_i); loadw_i = 0;
+        
+        // Wait for weights to shift down the grid
+        #(N * 20); 
 
-        // Wait for weight loading state to finish
-        #300; 
-
-       // D. Load Inputs into XPM FIFO (From DMA)
-        $display("[%0t] DMA: Streaming Inputs to FIFO...", $time);
+        // D. Stream Inputs into FIFO
+        // Inputs are pushed normally from Row 0 to N-1
+        $display("[%0t] Pushing Inputs...", $time);
         @(posedge dma_clk_i);
-        for (i = 0; i < 16; i = i + 1) begin
+        for (i = 0; i < N; i = i + 1) begin
             inff_wr_en_i = 1;
-            // COLUMN-DEPENDENT: Col 0 gets 1s, Col 1 gets 2s... Col 15 gets 16s (0x10)
-            for (j = 0; j < 16; j = j + 1) begin
-                inff_din_i[j*8 +: 8] = i + 1; 
+            for (j = 0; j < N; j = j + 1) begin
+                inff_din_i[j*DATA_WIDTH +: DATA_WIDTH] = A_mat[i][j]; 
             end
             @(posedge dma_clk_i);
         end
         inff_wr_en_i = 0;
-
-        // Wait for XPM CDC 
         #100;
 
-        // E. Controller triggers Computation
-        $display("[%0t] CTRL: Pulsing start_i. Computation Begins!", $time);
-        @(posedge clk_i);
-        start_i = 1;
-        @(posedge clk_i);
-        start_i = 0;
+        // E. Trigger Computation
+        $display("[%0t] Starting Computation...", $time);
+        @(posedge clk_i); start_i = 1;
+        @(posedge clk_i); start_i = 0;
 
-        // F. Wait for computation to complete
+        // F. Wait for hardware to assert done flag
         wait (done_o == 1'b1);
-        $display("[%0t] CTRL: done_o received! Array finished.", $time);
+        $display("[%0t] Hardware Computation Done!", $time);
         #50;
 
-        // G. Read Out Results
-        $display("==================================================");
-        $display("[%0t] DMA: Reading Computed Partial Sums from Output FIFO:", $time);
+        // G. Read Out Results and VERIFY AGAINST GOLDEN MODEL
+        $display("\n================ CHECKING RESULTS ================");
         @(posedge dma_clk_i);
         i = 0;
         
-        while (!outff_empty_o) begin
-            // FWFT FIFO: Data is valid BEFORE we pulse the read enable!
-            $display("   -> Row %0d Output [Col 15 Data]: %h | [Col 0 Data]: %h", 
-                     i, outff_dout_o[511:480], outff_dout_o[31:0]);
-            
-            // Pulse Read Enable
+        while (!outff_empty_o && i < N) begin
             outff_rd_en_i = 1;
+            
+            // Extract the flat data bus into a matrix format
+            for (j = 0; j < N; j = j + 1) begin
+                C_act[i][j] = outff_dout_o[j*PSUM_WIDTH +: PSUM_WIDTH];
+                
+                // COMPARE HARDWARE RESULT WITH GOLDEN MODEL
+                if (C_act[i][j] !== C_gold[i][j]) begin
+                    $display("[FAIL] Row %0d, Col %0d | Expected: %0d | Hardware: %0d", i, j, C_gold[i][j], C_act[i][j]);
+                    error_count = error_count + 1;
+                end
+            end
+            
+            // Print the hardware output row to the console
+            $write("HW Output Row %0d: ", i);
+            for (j = 0; j < N; j = j + 1) $write("%4d ", C_act[i][j]);
+            $display("");
+            
             @(posedge dma_clk_i);
             outff_rd_en_i = 0;
-            
-            // Wait 1 timestep to allow the empty_o flag to safely update 
-            // before the while loop evaluates it again
-            #1; 
-            
+            #1; // Allow empty flag to update
             i = i + 1;
         end
-        outff_rd_en_i = 0;
 
-        $display("[%0t] Simulation Complete.", $time);
+        // -------------------------------------------------------------------------
+        // 8. FINAL VERIFICATION VERDICT
+        // -------------------------------------------------------------------------
+        $display("\n==================================================");
+        if (error_count == 0) begin
+            $display("   TEST PASSED 100%%! ZERO ERRORS FOUND.");
+        end else begin
+            $display("   TEST FAILED! FOUND %0d ERRORS.", error_count);
+        end
+        $display("==================================================");
+        
         $finish;
     end
-    
-    
-    
-    // -------------------------------------------------------------------------
-    // 5. Console Snooping (Peek into the Controller and PE Inputs)
-    // -------------------------------------------------------------------------
-    // This will print every time the controller reads a new row from the FIFOs
-    always @(posedge clk_i) begin
-        if (dut.wff_rd_w) begin
-            $display("   [PE SNOOP %0t] Controller sending Weight Row to PE: %h", $time, dut.wff_dout_w);
-        end
-        if (dut.inff_rd_w) begin
-            $display("   [PE SNOOP %0t] Controller sending Input Row to PE:  %h", $time, dut.inff_dout_w);
-        end
-    end
-
 
 endmodule

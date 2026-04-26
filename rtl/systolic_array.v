@@ -1,6 +1,10 @@
 `timescale 1ns / 1ps
 
-module systolic_array(
+module systolic_array#(
+    parameter N = 16,
+    parameter DATA_WIDTH = 8,
+    parameter PSUM_WIDTH = 32
+)(
         input wire      clk_i,
         input wire      rst_n,
         input wire      start_i,
@@ -12,17 +16,17 @@ module systolic_array(
         
         // DMA -> Weight FIFO Interface
         input  wire         wff_wr_en_i,
-        input  wire [127:0] wff_din_i,
+        input  wire [(N*DATA_WIDTH)-1:0] wff_din_i,
         output wire         wff_full_o,
         
         // DMA -> Input FIFO Interface
         input  wire         inff_wr_en_i,
-        input  wire [127:0] inff_din_i,
+        input  wire [(N*DATA_WIDTH)-1:0] inff_din_i,
         output wire         inff_full_o,
         
         // Output FIFO -> DMA Interface
         input  wire         outff_rd_en_i,
-        output wire [511:0] outff_dout_o,
+        output wire [(N*PSUM_WIDTH)-1:0] outff_dout_o,
         output wire         outff_empty_o
     );
 
@@ -34,7 +38,9 @@ module systolic_array(
 //                                  Controller                                  //
 //////////////////////////////////////////////////////////////////////////////////\
     wire pe_loadw_w;
-    controller ctrl(
+    controller #(
+        .N(N)
+    )ctrl(
         .clk_i (clk_i),
         .rst_n  (rst_n),          
         .loadw_i (loadw_i),          // Load weight signal
@@ -51,8 +57,11 @@ module systolic_array(
 //////////////////////////////////////////////////////////////////////////////////
 //                                 Weight FIFO                                  //
 //////////////////////////////////////////////////////////////////////////////////
-    wire [127:0] wff_dout_w;
-    weight_fifo weight_ff(
+    wire [(N*DATA_WIDTH)-1:0] wff_dout_w;
+    weight_fifo#(
+        .N(N),
+        .DATA_WIDTH(DATA_WIDTH)
+    ) weight_ff(
         // Write Domain (from AXI DMA)
         .wr_clk_i   (dma_clk_i),
         .rst_i      (rst_i),          // FIXED: Connected reset
@@ -70,8 +79,11 @@ module systolic_array(
 //////////////////////////////////////////////////////////////////////////////////
 //                                  Input FIFO                                  //
 //////////////////////////////////////////////////////////////////////////////////   
-    wire [127:0] inff_dout_w;
-    input_fifo input_ff(
+    wire [(N*DATA_WIDTH)-1:0] inff_dout_w;
+    input_fifo #(
+        .N(N),
+        .DATA_WIDTH(DATA_WIDTH)
+    )input_ff(
         // Write Domain (from AXI DMA)
         .wr_clk_i   (dma_clk_i),
         .rst_i      (rst_i),          // FIXED: Connected reset
@@ -89,8 +101,11 @@ module systolic_array(
 //////////////////////////////////////////////////////////////////////////////////
 //                                 Output FIFO                                  //
 //////////////////////////////////////////////////////////////////////////////////   
-    wire [511:0] outff_din_w;
-    output_fifo output_ff(
+    wire [(N*PSUM_WIDTH)-1:0] outff_din_w;
+    output_fifo #(
+        .N(N),
+        .PSUM_WIDTH(PSUM_WIDTH)
+    )output_ff(
         // Write Domain (from Systolic Array)
         .wr_clk_i   (clk_i),          // FIXED: Array writes to this FIFO
         .rst_i      (rst_i),          // FIXED: Connected reset
@@ -109,7 +124,11 @@ module systolic_array(
 //////////////////////////////////////////////////////////////////////////////////
 //                                 16x16 PE grid                                //
 //////////////////////////////////////////////////////////////////////////////////
-    pe_grid pe_grid (
+    pe_grid #(
+        .N(N),
+        .DATA_WIDTH(DATA_WIDTH),
+        .PSUM_WIDTH(PSUM_WIDTH)
+    )pe_grid (
          .clk_i   (clk_i),
         .rst_n    (rst_n),
         .loadw_i  (pe_loadw_w),

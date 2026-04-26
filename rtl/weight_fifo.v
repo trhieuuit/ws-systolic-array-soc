@@ -20,12 +20,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module weight_fifo(
+module weight_fifo#(
+    parameter N = 16,
+    parameter DATA_WIDTH = 8
+)(
     // Write Domain (e.g., from AXI DMA)
     input  wire         wr_clk_i,
     input  wire         rst_i,      // Active high reset for XPM
     input  wire         wr_en_i,
-    input  wire [127:0] din_i,
+    input  wire [(N*DATA_WIDTH)-1:0] din_i,
     output wire         full_o,
 
     // Read Domain (e.g., to Systolic Array)
@@ -33,18 +36,18 @@ module weight_fifo(
     input  wire         rd_en_i,
     
     output wire         empty_o,
-    output wire [127:0] dout_o
+    output wire [(N*DATA_WIDTH)-1:0] dout_o
     );
 
     
 //////////////////////////////////////////////////////////////////////////////////
 //                             Weight FIFO declaration                          //
 //////////////////////////////////////////////////////////////////////////////////
-    wire [127:0] fifo_dout_w;
+    wire [(N*DATA_WIDTH)-1:0] fifo_dout_w;
     xpm_fifo_async #(
         .FIFO_MEMORY_TYPE("block"),    // Force synthesis into BRAM
-        .WRITE_DATA_WIDTH(128),        // 128-bit input
-        .READ_DATA_WIDTH(128),         // 128-bit output
+        .WRITE_DATA_WIDTH(N * DATA_WIDTH),        // 128-bit input
+        .READ_DATA_WIDTH(N * DATA_WIDTH),         // 128-bit output
         .FIFO_WRITE_DEPTH(256),        // Depth of 256 words
         .READ_MODE("fwft"),            // First-Word-Fall-Through
         .FIFO_READ_LATENCY(0),         

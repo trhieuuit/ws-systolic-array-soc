@@ -1,11 +1,15 @@
 `timescale 1ns / 1ps
 
-module input_fifo (
+module input_fifo #(
+    parameter N = 16,
+    parameter DATA_WIDTH = 8,
+    parameter  PSUM_WIDTH = 32
+)(
     // Write Domain (e.g., from AXI DMA)
     input  wire         wr_clk_i,
     input  wire         rst_i,      // Active high reset for XPM
     input  wire         wr_en_i,
-    input  wire [127:0] din_i,
+    input  wire [DATA_WIDTH*N-1:0] din_i,
     output wire         full_o,
 
     // Read Domain (e.g., to Systolic Array)
@@ -13,18 +17,18 @@ module input_fifo (
     input  wire         rd_en_i,
     
     output wire         empty_o,
-    output wire [127:0] dout_o
+    output wire [DATA_WIDTH*N-1:0] dout_o
 );
-    parameter ROW = 16, COL = 16;
+    parameter ROW = N, COL = N;
 
 //////////////////////////////////////////////////////////////////////////////////
 //                             Input FIFO declaration                           //
 //////////////////////////////////////////////////////////////////////////////////
-    wire [127:0] fifo_dout_w;
+    wire [DATA_WIDTH*N-1:0] fifo_dout_w;
     xpm_fifo_async #(
         .FIFO_MEMORY_TYPE("block"),    // Force synthesis into BRAM
-        .WRITE_DATA_WIDTH(128),        // 128-bit input
-        .READ_DATA_WIDTH(128),         // 128-bit output
+        .WRITE_DATA_WIDTH(DATA_WIDTH * N),        // 128-bit input
+        .READ_DATA_WIDTH(DATA_WIDTH * N),         // 128-bit output
         .FIFO_WRITE_DEPTH(256),        // Depth of 256 words
         .READ_MODE("fwft"),            // First-Word-Fall-Through
         .FIFO_READ_LATENCY(0),             
@@ -51,11 +55,11 @@ module input_fifo (
 //               Split read data: 128 bit -> 8b data x 16 width                 //
 //////////////////////////////////////////////////////////////////////////////////    
     
-    wire [7:0] fifo_split_data_w [0:15];
+    wire [DATA_WIDTH-1:0] fifo_split_data_w [0:N-1];
     genvar r, c, d;
     generate
-        for (r = 0; r < 16; r = r + 1) begin: IN_FIFO_SPLIT_DATA
-            assign fifo_split_data_w[r] = fifo_dout_w[r*8 + 7 : r*8];
+        for (r = 0; r < N; r = r + 1) begin: IN_FIFO_SPLIT_DATA
+            assign fifo_split_data_w[r] = fifo_dout_w[(r+1)*DATA_WIDTH-1 : r*DATA_WIDTH];
         end
     endgenerate
     
@@ -65,12 +69,12 @@ module input_fifo (
 //////////////////////////////////////////////////////////////////////////////////
     
     // We need a 2D array of registers to act as our delay pipelines
-    reg [7:0]   inff_delay_r [0:15][0:15]; 
-    wire [7:0]  pe_input_data_w [0:15]; // The final, properly staggered data
+    reg [DATA_WIDTH-1:0]   inff_delay_r [0:N-1][0:N-1]; 
+    wire [DATA_WIDTH-1:0]  pe_input_data_w [0:N-1]; // The final, properly staggered data
     
     
     generate
-        for (r = 0; r < 16; r = r + 1) begin : INPUT_DELAY_CHAIN
+        for (r = 0; r < N; r = r + 1) begin : INPUT_DELAY_CHAIN
             
             if (r == 0) begin
                 // Row 0 goes straight through, no delay needed!
@@ -101,8 +105,8 @@ module input_fifo (
 //               Merge read data: 8b data x 16 width  -> 128 bit                //
 //////////////////////////////////////////////////////////////////////////////////     
     generate
-        for (r = 0; r < 16; r = r + 1) begin: IN_FIFO_MERGE_DATA
-            assign dout_o[r*8 + 7 : r*8] = pe_input_data_w[r];
+        for (r = 0; r < N; r = r + 1) begin: IN_FIFO_MERGE_DATA
+            assign dout_o[(r+1)*DATA_WIDTH-1 : r*DATA_WIDTH] = pe_input_data_w[r];
         end
     endgenerate
 
