@@ -20,50 +20,54 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module pe_grid(
+module pe_grid#(
+    parameter N = 16,
+    parameter DATA_WIDTH = 8,
+    parameter  PSUM_WIDTH = 32
+)(
     input wire          clk_i,
     input wire          rst_n,
     input wire          loadw_i,
     input wire          en_i,
-    input wire  [127:0] weight_i,
-    input wire  [127:0] input_i,
-    output wire [511:0] output_o
+    input wire [(N*DATA_WIDTH)-1:0] weight_i,
+    input wire [(N*DATA_WIDTH)-1:0] input_i,
+    output wire [(N*PSUM_WIDTH)-1:0] output_o
 );
 
      // horizontal_wires[row][column]
-    wire signed [7:0]  input_pe_w [0:15][0:16]; 
+    wire signed [DATA_WIDTH - 1:0]  input_pe_w [0:N-1][0:N]; 
     
     // vertical_wires[row][column]
-    wire signed [7:0]  weight_pe_w [0:16][0:15];
-    wire signed [31:0] psum_pe_w   [0:16][0:15]; 
+    wire signed [DATA_WIDTH-1:0]  weight_pe_w [0:N][0:N-1];
+    wire signed [PSUM_WIDTH-1:0] psum_pe_w   [0:N][0:N-1]; 
    
     genvar r, c;
     generate
         // 1. INPUT ASSIGN (Rows)
-        for (r = 0; r < 16; r = r + 1) begin : INPUT_ASSIGN
-            assign input_pe_w[r][0] = input_i[r*8 + 7 : r*8];
+        for (r = 0; r < N; r = r + 1) begin : INPUT_ASSIGN
+            assign input_pe_w[r][0] = input_i[(r+1)*DATA_WIDTH - 1 : r*DATA_WIDTH];
         end
         
         // 2. WEIGHT ASSIGN (Columns) 
-        for (c = 0; c < 16; c = c + 1) begin : WEIGHT_ASSIGN
-            assign weight_pe_w[0][c] = weight_i[c*8 + 7 : c*8];
+        for (c = 0; c < N; c = c + 1) begin : WEIGHT_ASSIGN
+            assign weight_pe_w[0][c] = weight_i[(c+1)*DATA_WIDTH - 1 : c*DATA_WIDTH];
         end
         
         // 3. OUTPUT ASSIGN (Columns) 
-        for (c = 0; c < 16; c = c + 1) begin : OUTPUT_ASSIGN
-            assign output_o[c*32 + 31 : c*32] = psum_pe_w[16][c];
+        for (c = 0; c < N; c = c + 1) begin : OUTPUT_ASSIGN
+            assign output_o[(c+1)* PSUM_WIDTH - 1: c*PSUM_WIDTH] = psum_pe_w[N][c];
         end
     endgenerate
     
     generate
-        for (r = 0; r < 16; r = r + 1) begin : PE_ROW
+        for (r = 0; r < N; r = r + 1) begin : PE_ROW
             if (r == 0) begin : TOP_ROW_INIT
-                for (c = 0; c < 16; c = c + 1) begin : ZERO_COL
-                    assign psum_pe_w[0][c] = 32'sd0;
+                for (c = 0; c < N; c = c + 1) begin : ZERO_COL
+                    assign psum_pe_w[0][c] = {PSUM_WIDTH{1'b0}};
                 end
             end 
             
-            for (c = 0; c < 16; c = c + 1) begin  : PE_COL
+            for (c = 0; c < N; c = c + 1) begin  : PE_COL
                 // Instantiate the PE
                 pe u_pe (
                     .clk_i(clk_i),

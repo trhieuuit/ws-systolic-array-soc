@@ -1,6 +1,8 @@
 `timescale 1ns / 1ps
 
-module controller(
+module controller#(
+    parameter N = 16
+)(
     input wire      clk_i,
     input wire      rst_n,          
     input wire      loadw_i,        // Load weight signal
@@ -19,7 +21,7 @@ module controller(
     // Register declaration
     reg [2:0] current_state_r;
     reg [2:0] next_state_r;
-    reg [3:0] counter_r;
+    reg [$clog2(N)-1:0] counter_r;
     
 //////////////////////////////////////////////////////////////////////////////////
 //                            Next State Generation                             //
@@ -29,10 +31,10 @@ module controller(
     always @(*) begin
         case (current_state_r)
             IDLE: next_state_r = loadw_i ? LOAD_WEIGHT : (start_i ? LOAD_INPUT : IDLE);
-            LOAD_WEIGHT: next_state_r = (counter_r == 4'd15) ? IDLE : LOAD_WEIGHT; 
-            LOAD_INPUT: next_state_r = (counter_r == 4'd15) ? WAIT : LOAD_INPUT;
-            WAIT: next_state_r = (counter_r == 4'd13) ? RESULT_COLLECT : WAIT;
-            RESULT_COLLECT: next_state_r = (counter_r == 4'd15) ? IDLE : RESULT_COLLECT;
+            LOAD_WEIGHT: next_state_r = (counter_r == N-1) ? IDLE : LOAD_WEIGHT; 
+            LOAD_INPUT: next_state_r = (counter_r == N-1) ? WAIT : LOAD_INPUT;
+            WAIT: next_state_r = (counter_r == N-3) ? RESULT_COLLECT : WAIT;
+            RESULT_COLLECT: next_state_r = (counter_r ==N-1) ? IDLE : RESULT_COLLECT;
             default: next_state_r = IDLE;
         endcase
     end
@@ -99,8 +101,11 @@ module controller(
         if (!rst_n) begin
             done_o <= 0;
         end else begin
-            if (!done_o)
-                done_o <= (current_state_r == RESULT_COLLECT) && (counter_r == 4'd15);
+            if (!done_o) begin
+                done_o <= (current_state_r == RESULT_COLLECT) && (counter_r == N-1);
+            end else if (start_i || loadw_i) begin
+                done_o <= 0;
+            end
         end
     end
 

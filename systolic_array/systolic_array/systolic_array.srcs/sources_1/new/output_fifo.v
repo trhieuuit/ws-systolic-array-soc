@@ -1,19 +1,23 @@
 `timescale 1ns / 1ps
 
-module output_fifo (
+module output_fifo #(
+    parameter N = 16,
+    parameter DATA_WIDTH = 8,
+    parameter  PSUM_WIDTH = 32
+)(
     input  wire         wr_clk_i,
     input  wire         rst_i,      // Active high reset for XPM
     
     // Write Domain (e.g., from PE)
     input  wire         wr_en_i,
-    input  wire [511:0] din_i,
+    input  wire [PSUM_WIDTH*N-1:0] din_i,
     output wire         full_o,
 
     // Read Domain (e.g., to DMA)
     input  wire         rd_clk_i,
     input  wire         rd_en_i,
     output wire         empty_o,
-    output wire [511:0] dout_o
+    output wire [PSUM_WIDTH*N-1:0] dout_o
 );
 
 
@@ -21,12 +25,12 @@ module output_fifo (
 //////////////////////////////////////////////////////////////////////////////////
 //               Split read data: 512 bit -> 32b data x 16 width                 //
 //////////////////////////////////////////////////////////////////////////////////    
-    wire [31:0] fifo_split_data_w [0:15]; 
+    wire [PSUM_WIDTH-1:0] fifo_split_data_w [0:N-1]; 
     genvar r, c, d;
     
     generate
-        for (c = 0; c < 16; c = c + 1) begin: IN_FIFO_SPLIT_DATA
-            assign fifo_split_data_w[c] = din_i[c*32 + 31 : c*32];
+        for (c = 0; c < N; c = c + 1) begin: IN_FIFO_SPLIT_DATA
+            assign fifo_split_data_w[c] = din_i[(c+1)*PSUM_WIDTH - 1 : c*PSUM_WIDTH];
         end
     endgenerate
     
@@ -36,14 +40,14 @@ module output_fifo (
 //////////////////////////////////////////////////////////////////////////////////
     
     // We need a 2D array of registers to act as our delay pipelines
-    reg  signed [31:0]   outff_delay_r [0:15][0:15]; 
-    wire signed [31:0]  fifo_input_data_w [0:15]; // The final, properly staggered data
+    reg  signed [PSUM_WIDTH-1:0]   outff_delay_r [0:N-1][0:N-1]; 
+    wire signed [PSUM_WIDTH-1:0]  fifo_input_data_w [0:N-1]; // The final, properly staggered data
     
     
     generate
-        for (c = 0; c < 16; c = c + 1) begin : OUTPUT_DELAY_CHAIN
+        for (c = 0; c < N; c = c + 1) begin : OUTPUT_DELAY_CHAIN
             
-            if (c == 15) begin
+            if (c == N-1) begin
                 // Column 15 arrives last, so it goes straight through, no delay needed!
                 assign fifo_input_data_w[c] = fifo_split_data_w[c]; 
                 
@@ -57,7 +61,7 @@ module output_fifo (
                 end
                 
                 // Middle stages (if any) daisy-chain together
-                for (d = 1; d < 15; d = d + 1) begin : SKEW_STAGE
+                for (d = 1; d < N-1; d = d + 1) begin : SKEW_STAGE
                     
                     always @(posedge wr_clk_i) begin
                        outff_delay_r[d][c] <= outff_delay_r[d-1][c];
@@ -68,7 +72,7 @@ module output_fifo (
                 // The final output of this column's chain goes to the FIFO write data
                 // If c = 0, last index is 14 (14 - 0). Delay = 15 cycles.
                 // If c = 14, last index is 0 (14 - 14). Delay = 1 cycle.
-                assign fifo_input_data_w[c] = outff_delay_r[14 - c][c];
+                assign fifo_input_data_w[c] = outff_delay_r[(N - 2) - c][c];
             end
             
         end
@@ -77,10 +81,10 @@ module output_fifo (
 //////////////////////////////////////////////////////////////////////////////////
 //               Merge read data: 8b data x 16 width  -> 128 bit                //
 //////////////////////////////////////////////////////////////////////////////////  
-    wire [511:0] fifo_din_w;   
+    wire [PSUM_WIDTH*N-1:0] fifo_din_w;   
     generate
-        for (c = 0; c < 16; c = c + 1) begin: OUT_FIFO_MERGE_DATA
-            assign  fifo_din_w[c*32 + 31 : c*32] = fifo_input_data_w[c];
+        for (c = 0; c < N; c = c + 1) begin: OUT_FIFO_MERGE_DATA
+            assign  fifo_din_w[(c+1)*PSUM_WIDTH - 1 : c*PSUM_WIDTH] = fifo_input_data_w[c];
         end
     endgenerate
     
@@ -91,8 +95,8 @@ module output_fifo (
    
     xpm_fifo_async #(
         .FIFO_MEMORY_TYPE("block"),    // Force synthesis into BRAM
-        .WRITE_DATA_WIDTH(512),        // 128-bit input
-        .READ_DATA_WIDTH(512),         // 128-bit output
+        .WRITE_DATA_WIDTH(PSUM_WIDTH * N),        // 512-bit input
+        .READ_DATA_WIDTH(PSUM_WIDTH * N),         // 512-bit output
         .FIFO_WRITE_DEPTH(256),        // Depth of 256 words
         .READ_MODE("fwft"),            // First-Word-Fall-Through
         .FIFO_READ_LATENCY(0),             
