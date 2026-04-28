@@ -1,1 +1,1 @@
-# ws-systolic-array-soc
+Weight Stationary Systolic Array
