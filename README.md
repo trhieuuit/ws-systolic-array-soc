@@ -18,7 +18,6 @@ Currently, the core math engine and its immediate controller are fully functiona
 
 ## 🧠 Architecture Overview
 
-![Weight Stationary Architecture Block Diagram](docs/images/architecture_diagram.png) *(Note: Replace with your actual image path)*
 
 This accelerator utilizes a **Weight Stationary** dataflow. This architecture is chosen to maximize weight reuse, which is highly efficient for the first few standard convolutional layers where a single kernel slides across a massive spatial input image.
 
