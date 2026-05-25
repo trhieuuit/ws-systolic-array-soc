@@ -1,0 +1,537 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Mon May 25 12:23:21 2026
+| Host         : Trong_Hieu running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xck26-sfvc784-2LV-c
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_myip_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the update of design_1_myip_0_0 (xilinx.com:user:myip:1.0 (Rev. 7)) to current project options.
+
+
+
+
+
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Mon May 25 12:00:49 2026
+| Host         : Trong_Hieu running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xck26-sfvc784-2LV-c
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_myip_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the update of design_1_myip_0_0 (xilinx.com:user:myip:1.0 (Rev. 7)) to current project options.
+
+
+
+
+
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Mon May 25 11:43:15 2026
+| Host         : Trong_Hieu running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xck26-sfvc784-2LV-c
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_myip_0_0'
+
+1. Summary
+----------
+
+CAUTION (success, with warnings) in the upgrade of design_1_myip_0_0 (xilinx.com:user:myip:1.0) from (Rev. 6) to (Rev. 7)
+
+After upgrade, an IP may have parameter differences compared to the original customization. Please review the parameters within the IP customization GUI to ensure proper functionality.
+
+2. Customization warnings
+-------------------------
+
+An attempt to modify the value of disabled parameter 'C_S00_AXI_ADDR_WIDTH' from '4' to '5' has been ignored for IP 'design_1_myip_0_0'
+
+
+3. Debug Commands
+-----------------
+
+  The following debug information can be passed to Vivado as Tcl commands,
+in order to validate or debug the output of the upgrade flow.
+  You may consult any warnings from within this upgrade, and alter or remove
+the configuration parameter(s) which caused the warning; then execute the Tcl
+commands, and use the IP Customization GUI to verify the IP configuration.
+
+create_ip -vlnv xilinx.com:user:myip:1.0 -user_name design_1_myip_0_0
+set_property -dict "\
+  CONFIG.C_M00_AXIS_START_COUNT {32} \
+  CONFIG.C_M00_AXIS_TDATA_WIDTH {512} \
+  CONFIG.C_S00_AXIS_TDATA_WIDTH {128} \
+  CONFIG.C_S00_AXI_ADDR_WIDTH {5} \
+  CONFIG.C_S00_AXI_BASEADDR {0xFFFFFFFF} \
+  CONFIG.C_S00_AXI_DATA_WIDTH {32} \
+  CONFIG.C_S00_AXI_HIGHADDR {0x00000000} \
+  CONFIG.C_S01_AXIS_TDATA_WIDTH {128} \
+  CONFIG.Component_Name {design_1_myip_0_0} \
+  CONFIG.M00_AXIS.CLK_DOMAIN {design_1_zynq_ultra_ps_e_0_0_pl_clk0} \
+  CONFIG.M00_AXIS.FREQ_HZ {99999001} \
+  CONFIG.M00_AXIS.HAS_TKEEP {0} \
+  CONFIG.M00_AXIS.HAS_TLAST {1} \
+  CONFIG.M00_AXIS.HAS_TREADY {1} \
+  CONFIG.M00_AXIS.HAS_TSTRB {1} \
+  CONFIG.M00_AXIS.INSERT_VIP {0} \
+  CONFIG.M00_AXIS.LAYERED_METADATA {undef} \
+  CONFIG.M00_AXIS.PHASE {0.0} \
+  CONFIG.M00_AXIS.TDATA_NUM_BYTES {64} \
+  CONFIG.M00_AXIS.TDEST_WIDTH {0} \
+  CONFIG.M00_AXIS.TID_WIDTH {0} \
+  CONFIG.M00_AXIS.TUSER_WIDTH {0} \
+  CONFIG.M00_AXIS.WIZ_DATA_WIDTH {32} \
+  CONFIG.M00_AXIS_CLK.ASSOCIATED_BUSIF {M00_AXIS} \
+  CONFIG.M00_AXIS_CLK.ASSOCIATED_PORT {} \
+  CONFIG.M00_AXIS_CLK.ASSOCIATED_RESET {m00_axis_aresetn} \
+  CONFIG.M00_AXIS_CLK.CLK_DOMAIN {design_1_zynq_ultra_ps_e_0_0_pl_clk0} \
+  CONFIG.M00_AXIS_CLK.FREQ_HZ {99999001} \
+  CONFIG.M00_AXIS_CLK.FREQ_TOLERANCE_HZ {0} \
+  CONFIG.M00_AXIS_CLK.INSERT_VIP {0} \
+  CONFIG.M00_AXIS_CLK.PHASE {0.0} \
+  CONFIG.M00_AXIS_RST.INSERT_VIP {0} \
+  CONFIG.M00_AXIS_RST.POLARITY {ACTIVE_LOW} \
+  CONFIG.S00_AXI.ADDR_WIDTH {4} \
+  CONFIG.S00_AXI.ARUSER_WIDTH {0} \
+  CONFIG.S00_AXI.AWUSER_WIDTH {0} \
+  CONFIG.S00_AXI.BUSER_WIDTH {0} \
+  CONFIG.S00_AXI.CLK_DOMAIN {design_1_zynq_ultra_ps_e_0_0_pl_clk0} \
+  CONFIG.S00_AXI.DATA_WIDTH {32} \
+  CONFIG.S00_AXI.FREQ_HZ {99999001} \
+  CONFIG.S00_AXI.HAS_BRESP {1} \
+  CONFIG.S00_AXI.HAS_BURST {0} \
+  CONFIG.S00_AXI.HAS_CACHE {0} \
+  CONFIG.S00_AXI.HAS_LOCK {0} \
+  CONFIG.S00_AXI.HAS_PROT {1} \
+  CONFIG.S00_AXI.HAS_QOS {0} \
+  CONFIG.S00_AXI.HAS_REGION {0} \
+  CONFIG.S00_AXI.HAS_RRESP {1} \
+  CONFIG.S00_AXI.HAS_WSTRB {1} \
+  CONFIG.S00_AXI.ID_WIDTH {0} \
+  CONFIG.S00_AXI.INSERT_VIP {0} \
+  CONFIG.S00_AXI.MAX_BURST_LENGTH {1} \
+  CONFIG.S00_AXI.NUM_READ_OUTSTANDING {8} \
+  CONFIG.S00_AXI.NUM_READ_THREADS {1} \
+  CONFIG.S00_AXI.NUM_WRITE_OUTSTANDING {8} \
+  CONFIG.S00_AXI.NUM_WRITE_THREADS {1} \
+  CONFIG.S00_AXI.PHASE {0.0} \
+  CONFIG.S00_AXI.PROTOCOL {AXI4LITE} \
+  CONFIG.S00_AXI.READ_WRITE_MODE {READ_WRITE} \
+  CONFIG.S00_AXI.RUSER_BITS_PER_BYTE {0} \
+  CONFIG.S00_AXI.RUSER_WIDTH {0} \
+  CONFIG.S00_AXI.SUPPORTS_NARROW_BURST {0} \
+  CONFIG.S00_AXI.WIZ_DATA_WIDTH {32} \
+  CONFIG.S00_AXI.WIZ_NUM_REG {4} \
+  CONFIG.S00_AXI.WUSER_BITS_PER_BYTE {0} \
+  CONFIG.S00_AXI.WUSER_WIDTH {0} \
+  CONFIG.S00_AXIS.CLK_DOMAIN {design_1_zynq_ultra_ps_e_0_0_pl_clk0} \
+  CONFIG.S00_AXIS.FREQ_HZ {99999001} \
+  CONFIG.S00_AXIS.HAS_TKEEP {0} \
+  CONFIG.S00_AXIS.HAS_TLAST {1} \
+  CONFIG.S00_AXIS.HAS_TREADY {1} \
+  CONFIG.S00_AXIS.HAS_TSTRB {0} \
+  CONFIG.S00_AXIS.INSERT_VIP {0} \
+  CONFIG.S00_AXIS.LAYERED_METADATA {undef} \
+  CONFIG.S00_AXIS.PHASE {0.0} \
+  CONFIG.S00_AXIS.TDATA_NUM_BYTES {16} \
+  CONFIG.S00_AXIS.TDEST_WIDTH {0} \
+  CONFIG.S00_AXIS.TID_WIDTH {0} \
+  CONFIG.S00_AXIS.TUSER_WIDTH {0} \
+  CONFIG.S00_AXIS.WIZ_DATA_WIDTH {32} \
+  CONFIG.S00_AXIS_CLK.ASSOCIATED_BUSIF {S00_AXIS} \
+  CONFIG.S00_AXIS_CLK.ASSOCIATED_PORT {} \
+  CONFIG.S00_AXIS_CLK.ASSOCIATED_RESET {s00_axis_aresetn} \
+  CONFIG.S00_AXIS_CLK.CLK_DOMAIN {design_1_zynq_ultra_ps_e_0_0_pl_clk0} \
+  CONFIG.S00_AXIS_CLK.FREQ_HZ {99999001} \
+  CONFIG.S00_AXIS_CLK.FREQ_TOLERANCE_HZ {0} \
+  CONFIG.S00_AXIS_CLK.INSERT_VIP {0} \
+  CONFIG.S00_AXIS_CLK.PHASE {0.0} \
+  CONFIG.S00_AXIS_RST.INSERT_VIP {0} \
+  CONFIG.S00_AXIS_RST.POLARITY {ACTIVE_LOW} \
+  CONFIG.S00_AXI_CLK.ASSOCIATED_BUSIF {S00_AXI} \
+  CONFIG.S00_AXI_CLK.ASSOCIATED_PORT {} \
+  CONFIG.S00_AXI_CLK.ASSOCIATED_RESET {s00_axi_aresetn} \
+  CONFIG.S00_AXI_CLK.CLK_DOMAIN {design_1_zynq_ultra_ps_e_0_0_pl_clk0} \
+  CONFIG.S00_AXI_CLK.FREQ_HZ {99999001} \
+  CONFIG.S00_AXI_CLK.FREQ_TOLERANCE_HZ {0} \
+  CONFIG.S00_AXI_CLK.INSERT_VIP {0} \
+  CONFIG.S00_AXI_CLK.PHASE {0.0} \
+  CONFIG.S00_AXI_RST.INSERT_VIP {0} \
+  CONFIG.S00_AXI_RST.POLARITY {ACTIVE_LOW} \
+  CONFIG.S01_AXIS.CLK_DOMAIN {design_1_zynq_ultra_ps_e_0_0_pl_clk0} \
+  CONFIG.S01_AXIS.FREQ_HZ {99999001} \
+  CONFIG.S01_AXIS.HAS_TKEEP {0} \
+  CONFIG.S01_AXIS.HAS_TLAST {1} \
+  CONFIG.S01_AXIS.HAS_TREADY {1} \
+  CONFIG.S01_AXIS.HAS_TSTRB {0} \
+  CONFIG.S01_AXIS.INSERT_VIP {0} \
+  CONFIG.S01_AXIS.LAYERED_METADATA {undef} \
+  CONFIG.S01_AXIS.PHASE {0.0} \
+  CONFIG.S01_AXIS.TDATA_NUM_BYTES {16} \
+  CONFIG.S01_AXIS.TDEST_WIDTH {0} \
+  CONFIG.S01_AXIS.TID_WIDTH {0} \
+  CONFIG.S01_AXIS.TUSER_WIDTH {0} \
+  CONFIG.S01_AXIS.WIZ_DATA_WIDTH {32} \
+  CONFIG.S01_AXIS_CLK.ASSOCIATED_BUSIF {S01_AXIS} \
+  CONFIG.S01_AXIS_CLK.ASSOCIATED_PORT {} \
+  CONFIG.S01_AXIS_CLK.ASSOCIATED_RESET {s01_axis_aresetn} \
+  CONFIG.S01_AXIS_CLK.CLK_DOMAIN {design_1_zynq_ultra_ps_e_0_0_pl_clk0} \
+  CONFIG.S01_AXIS_CLK.FREQ_HZ {99999001} \
+  CONFIG.S01_AXIS_CLK.FREQ_TOLERANCE_HZ {0} \
+  CONFIG.S01_AXIS_CLK.INSERT_VIP {0} \
+  CONFIG.S01_AXIS_CLK.PHASE {0.0} \
+  CONFIG.S01_AXIS_RST.INSERT_VIP {0} \
+  CONFIG.S01_AXIS_RST.POLARITY {ACTIVE_LOW} " [get_ips design_1_myip_0_0]
+
+
+
+
+
+
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Mon May 25 11:35:43 2026
+| Host         : Trong_Hieu running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xck26-sfvc784-2LV-c
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_myip_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of design_1_myip_0_0 (xilinx.com:user:myip:1.0) from (Rev. 5) to (Rev. 6)
+
+
+
+
+
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Mon May 25 11:09:12 2026
+| Host         : Trong_Hieu running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xck26-sfvc784-2LV-c
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_myip_0_0'
+
+1. Summary
+----------
+
+CAUTION (success, with warnings) in the upgrade of design_1_myip_0_0 (xilinx.com:user:myip:1.0) from (Rev. 2) to (Rev. 5)
+
+After upgrade, an IP may have parameter differences compared to the original customization. Please review the parameters within the IP customization GUI to ensure proper functionality.
+
+2. Customization warnings
+-------------------------
+
+An attempt to modify the value of disabled parameter 'C_S00_AXI_ADDR_WIDTH' from '5' to '4' has been ignored for IP 'design_1_myip_0_0'
+
+
+3. Debug Commands
+-----------------
+
+  The following debug information can be passed to Vivado as Tcl commands,
+in order to validate or debug the output of the upgrade flow.
+  You may consult any warnings from within this upgrade, and alter or remove
+the configuration parameter(s) which caused the warning; then execute the Tcl
+commands, and use the IP Customization GUI to verify the IP configuration.
+
+create_ip -vlnv xilinx.com:user:myip:1.0 -user_name design_1_myip_0_0
+set_property -dict "\
+  CONFIG.C_M00_AXIS_START_COUNT {32} \
+  CONFIG.C_M00_AXIS_TDATA_WIDTH {512} \
+  CONFIG.C_S00_AXIS_TDATA_WIDTH {128} \
+  CONFIG.C_S00_AXI_ADDR_WIDTH {4} \
+  CONFIG.C_S00_AXI_BASEADDR {0xFFFFFFFF} \
+  CONFIG.C_S00_AXI_DATA_WIDTH {32} \
+  CONFIG.C_S00_AXI_HIGHADDR {0x00000000} \
+  CONFIG.C_S01_AXIS_TDATA_WIDTH {128} \
+  CONFIG.Component_Name {design_1_myip_0_0} \
+  CONFIG.M00_AXIS.CLK_DOMAIN {design_1_zynq_ultra_ps_e_0_0_pl_clk0} \
+  CONFIG.M00_AXIS.FREQ_HZ {99999001} \
+  CONFIG.M00_AXIS.HAS_TKEEP {0} \
+  CONFIG.M00_AXIS.HAS_TLAST {1} \
+  CONFIG.M00_AXIS.HAS_TREADY {1} \
+  CONFIG.M00_AXIS.HAS_TSTRB {1} \
+  CONFIG.M00_AXIS.INSERT_VIP {0} \
+  CONFIG.M00_AXIS.LAYERED_METADATA {undef} \
+  CONFIG.M00_AXIS.PHASE {0.0} \
+  CONFIG.M00_AXIS.TDATA_NUM_BYTES {64} \
+  CONFIG.M00_AXIS.TDEST_WIDTH {0} \
+  CONFIG.M00_AXIS.TID_WIDTH {0} \
+  CONFIG.M00_AXIS.TUSER_WIDTH {0} \
+  CONFIG.M00_AXIS.WIZ_DATA_WIDTH {32} \
+  CONFIG.M00_AXIS_CLK.ASSOCIATED_BUSIF {M00_AXIS} \
+  CONFIG.M00_AXIS_CLK.ASSOCIATED_PORT {} \
+  CONFIG.M00_AXIS_CLK.ASSOCIATED_RESET {m00_axis_aresetn} \
+  CONFIG.M00_AXIS_CLK.CLK_DOMAIN {design_1_zynq_ultra_ps_e_0_0_pl_clk0} \
+  CONFIG.M00_AXIS_CLK.FREQ_HZ {99999001} \
+  CONFIG.M00_AXIS_CLK.FREQ_TOLERANCE_HZ {0} \
+  CONFIG.M00_AXIS_CLK.INSERT_VIP {0} \
+  CONFIG.M00_AXIS_CLK.PHASE {0.0} \
+  CONFIG.M00_AXIS_RST.INSERT_VIP {0} \
+  CONFIG.M00_AXIS_RST.POLARITY {ACTIVE_LOW} \
+  CONFIG.S00_AXI.ADDR_WIDTH {4} \
+  CONFIG.S00_AXI.ARUSER_WIDTH {0} \
+  CONFIG.S00_AXI.AWUSER_WIDTH {0} \
+  CONFIG.S00_AXI.BUSER_WIDTH {0} \
+  CONFIG.S00_AXI.CLK_DOMAIN {design_1_zynq_ultra_ps_e_0_0_pl_clk0} \
+  CONFIG.S00_AXI.DATA_WIDTH {32} \
+  CONFIG.S00_AXI.FREQ_HZ {99999001} \
+  CONFIG.S00_AXI.HAS_BRESP {1} \
+  CONFIG.S00_AXI.HAS_BURST {0} \
+  CONFIG.S00_AXI.HAS_CACHE {0} \
+  CONFIG.S00_AXI.HAS_LOCK {0} \
+  CONFIG.S00_AXI.HAS_PROT {1} \
+  CONFIG.S00_AXI.HAS_QOS {0} \
+  CONFIG.S00_AXI.HAS_REGION {0} \
+  CONFIG.S00_AXI.HAS_RRESP {1} \
+  CONFIG.S00_AXI.HAS_WSTRB {1} \
+  CONFIG.S00_AXI.ID_WIDTH {0} \
+  CONFIG.S00_AXI.INSERT_VIP {0} \
+  CONFIG.S00_AXI.MAX_BURST_LENGTH {1} \
+  CONFIG.S00_AXI.NUM_READ_OUTSTANDING {8} \
+  CONFIG.S00_AXI.NUM_READ_THREADS {1} \
+  CONFIG.S00_AXI.NUM_WRITE_OUTSTANDING {8} \
+  CONFIG.S00_AXI.NUM_WRITE_THREADS {1} \
+  CONFIG.S00_AXI.PHASE {0.0} \
+  CONFIG.S00_AXI.PROTOCOL {AXI4LITE} \
+  CONFIG.S00_AXI.READ_WRITE_MODE {READ_WRITE} \
+  CONFIG.S00_AXI.RUSER_BITS_PER_BYTE {0} \
+  CONFIG.S00_AXI.RUSER_WIDTH {0} \
+  CONFIG.S00_AXI.SUPPORTS_NARROW_BURST {0} \
+  CONFIG.S00_AXI.WIZ_DATA_WIDTH {32} \
+  CONFIG.S00_AXI.WIZ_NUM_REG {4} \
+  CONFIG.S00_AXI.WUSER_BITS_PER_BYTE {0} \
+  CONFIG.S00_AXI.WUSER_WIDTH {0} \
+  CONFIG.S00_AXIS.CLK_DOMAIN {design_1_zynq_ultra_ps_e_0_0_pl_clk0} \
+  CONFIG.S00_AXIS.FREQ_HZ {99999001} \
+  CONFIG.S00_AXIS.HAS_TKEEP {0} \
+  CONFIG.S00_AXIS.HAS_TLAST {1} \
+  CONFIG.S00_AXIS.HAS_TREADY {1} \
+  CONFIG.S00_AXIS.HAS_TSTRB {0} \
+  CONFIG.S00_AXIS.INSERT_VIP {0} \
+  CONFIG.S00_AXIS.LAYERED_METADATA {undef} \
+  CONFIG.S00_AXIS.PHASE {0.0} \
+  CONFIG.S00_AXIS.TDATA_NUM_BYTES {16} \
+  CONFIG.S00_AXIS.TDEST_WIDTH {0} \
+  CONFIG.S00_AXIS.TID_WIDTH {0} \
+  CONFIG.S00_AXIS.TUSER_WIDTH {0} \
+  CONFIG.S00_AXIS.WIZ_DATA_WIDTH {32} \
+  CONFIG.S00_AXIS_CLK.ASSOCIATED_BUSIF {S00_AXIS} \
+  CONFIG.S00_AXIS_CLK.ASSOCIATED_PORT {} \
+  CONFIG.S00_AXIS_CLK.ASSOCIATED_RESET {s00_axis_aresetn} \
+  CONFIG.S00_AXIS_CLK.CLK_DOMAIN {design_1_zynq_ultra_ps_e_0_0_pl_clk0} \
+  CONFIG.S00_AXIS_CLK.FREQ_HZ {99999001} \
+  CONFIG.S00_AXIS_CLK.FREQ_TOLERANCE_HZ {0} \
+  CONFIG.S00_AXIS_CLK.INSERT_VIP {0} \
+  CONFIG.S00_AXIS_CLK.PHASE {0.0} \
+  CONFIG.S00_AXIS_RST.INSERT_VIP {0} \
+  CONFIG.S00_AXIS_RST.POLARITY {ACTIVE_LOW} \
+  CONFIG.S00_AXI_CLK.ASSOCIATED_BUSIF {S00_AXI} \
+  CONFIG.S00_AXI_CLK.ASSOCIATED_PORT {} \
+  CONFIG.S00_AXI_CLK.ASSOCIATED_RESET {s00_axi_aresetn} \
+  CONFIG.S00_AXI_CLK.CLK_DOMAIN {design_1_zynq_ultra_ps_e_0_0_pl_clk0} \
+  CONFIG.S00_AXI_CLK.FREQ_HZ {99999001} \
+  CONFIG.S00_AXI_CLK.FREQ_TOLERANCE_HZ {0} \
+  CONFIG.S00_AXI_CLK.INSERT_VIP {0} \
+  CONFIG.S00_AXI_CLK.PHASE {0.0} \
+  CONFIG.S00_AXI_RST.INSERT_VIP {0} \
+  CONFIG.S00_AXI_RST.POLARITY {ACTIVE_LOW} \
+  CONFIG.S01_AXIS.CLK_DOMAIN {design_1_zynq_ultra_ps_e_0_0_pl_clk0} \
+  CONFIG.S01_AXIS.FREQ_HZ {99999001} \
+  CONFIG.S01_AXIS.HAS_TKEEP {0} \
+  CONFIG.S01_AXIS.HAS_TLAST {1} \
+  CONFIG.S01_AXIS.HAS_TREADY {1} \
+  CONFIG.S01_AXIS.HAS_TSTRB {0} \
+  CONFIG.S01_AXIS.INSERT_VIP {0} \
+  CONFIG.S01_AXIS.LAYERED_METADATA {undef} \
+  CONFIG.S01_AXIS.PHASE {0.0} \
+  CONFIG.S01_AXIS.TDATA_NUM_BYTES {16} \
+  CONFIG.S01_AXIS.TDEST_WIDTH {0} \
+  CONFIG.S01_AXIS.TID_WIDTH {0} \
+  CONFIG.S01_AXIS.TUSER_WIDTH {0} \
+  CONFIG.S01_AXIS.WIZ_DATA_WIDTH {32} \
+  CONFIG.S01_AXIS_CLK.ASSOCIATED_BUSIF {S01_AXIS} \
+  CONFIG.S01_AXIS_CLK.ASSOCIATED_PORT {} \
+  CONFIG.S01_AXIS_CLK.ASSOCIATED_RESET {s01_axis_aresetn} \
+  CONFIG.S01_AXIS_CLK.CLK_DOMAIN {design_1_zynq_ultra_ps_e_0_0_pl_clk0} \
+  CONFIG.S01_AXIS_CLK.FREQ_HZ {99999001} \
+  CONFIG.S01_AXIS_CLK.FREQ_TOLERANCE_HZ {0} \
+  CONFIG.S01_AXIS_CLK.INSERT_VIP {0} \
+  CONFIG.S01_AXIS_CLK.PHASE {0.0} \
+  CONFIG.S01_AXIS_RST.INSERT_VIP {0} \
+  CONFIG.S01_AXIS_RST.POLARITY {ACTIVE_LOW} " [get_ips design_1_myip_0_0]
+
+
+
+
+
+
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Mon May 25 10:59:24 2026
+| Host         : Trong_Hieu running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xck26-sfvc784-2LV-c
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_myip_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the update of design_1_myip_0_0 (xilinx.com:user:myip:1.0 (Rev. 2)) to current project options.
+
+
+
+
+
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Mon May 25 10:49:39 2026
+| Host         : Trong_Hieu running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xck26-sfvc784-2LV-c
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_myip_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the update of design_1_myip_0_0 (xilinx.com:user:myip:1.0 (Rev. 2)) to current project options.
+
+
+
+
+
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Mon May 25 10:47:30 2026
+| Host         : Trong_Hieu running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xck26-sfvc784-2LV-c
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_myip_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the update of design_1_myip_0_0 (xilinx.com:user:myip:1.0 (Rev. 2)) to current project options.
+
+
+
+
+
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Sun May 24 21:24:16 2026
+| Host         : Trong_Hieu running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xck26-sfvc784-2LV-c
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_myip_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the update of design_1_myip_0_0 (xilinx.com:user:myip:1.0 (Rev. 2)) to current project options.
+
+
+
+
+
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Sun May 24 17:29:45 2026
+| Host         : Trong_Hieu running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xck26-sfvc784-2LV-c
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_myip_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the update of design_1_myip_0_0 (xilinx.com:user:myip:1.0 (Rev. 2)) to current project options.
+
+
+
+
+
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Sun May 24 15:29:47 2026
+| Host         : Trong_Hieu running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xck26-sfvc784-2LV-c
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_myip_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the update of design_1_myip_0_0 (xilinx.com:user:myip:1.0 (Rev. 2)) to current project options.
+
+
+
+
+
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Sun May 24 14:16:02 2026
+| Host         : Trong_Hieu running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xck26-sfvc784-2LV-c
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_myip_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the update of design_1_myip_0_0 (xilinx.com:user:myip:1.0 (Rev. 2)) to current project options.
+

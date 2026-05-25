@@ -1,0 +1,76 @@
+Time resolution is 1 ps
+==================================================
+BẮT ĐẦU MÔ PHỎNG: NHÂN MA TRẬN 32x32 TRÊN MẢNG 16x16
+==================================================
+[TIME: 40000] PHA 1: Nạp Ma trận A (toàn số 1) và Ma trận B (toàn số 2)
+[TIME: 735000] PHA 2: Kích hoạt Start
+[TIME: 745000] Hệ thống đang tính toán... (Tiling AGU đang chia việc)
+[TIME: 9945000] PHA 3: Đã có tín hiệu DONE_O! Bắt đầu thu hoạch BRAM C.
+Addr  0 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr  1 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr  2 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr  3 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr  4 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr  5 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr  6 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr  7 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr  8 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr  9 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 10 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 11 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 12 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 13 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 14 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 15 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 16 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 17 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 18 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 19 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 20 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 21 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 22 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 23 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 24 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 25 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 26 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 27 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 28 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 29 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 30 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 31 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 32 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 33 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 34 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 35 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 36 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 37 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 38 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 39 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 40 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 41 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 42 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 43 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 44 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 45 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 46 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 47 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 48 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 49 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 50 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 51 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 52 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 53 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 54 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 55 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 56 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 57 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 58 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 59 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 60 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 61 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 62 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+Addr 63 | Psum[0]: 64, Psum[1]: 64, Psum[2]: 64, Psum[3]: 64
+==================================================
+>>> TEST PASSED THÀNH CÔNG RỰC RỠ! TẤT CẢ KẾT QUẢ ĐỀU LÀ 64 <<<
+==================================================
+$finish called at time : 11245 ns : File "D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.srcs/sources_1/new/tb_accelerator_top.v" Line 190

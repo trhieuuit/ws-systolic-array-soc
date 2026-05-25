@@ -1,0 +1,19 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "C:/Xilinx/2025.1/Vivado/data/rsb/busdef" --include "../../../../sys.gen/sources_1/bd/design_1/ipshared/ec67/hdl" --include "../../../../sys.gen/sources_1/bd/design_1/ipshared/7711/hdl" --include "../../../../sys.gen/sources_1/bd/design_1/ipshared/f0b6/hdl/verilog" --include "../../../../sys.gen/sources_1/bd/design_1/ipshared/a8e4/hdl/verilog" --include "C:/Xilinx/2025.1/Vivado/data/xilinx_vip/include" \
+"../../../../sys.srcs/sources_1/new/accelerator_top.v" \
+"../../../../sys.srcs/sources_1/imports/sources_1/imports/new/controller.v" \
+"../../../../sys.srcs/sources_1/imports/sources_1/imports/new/input_fifo.v" \
+"../../../../sys.srcs/sources_1/imports/sources_1/imports/new/output_fifo.v" \
+"../../../../sys.srcs/sources_1/imports/sources_1/imports/new/pe.v" \
+"../../../../sys.srcs/sources_1/imports/sources_1/imports/new/pe_grid.v" \
+"../../../../sys.srcs/sources_1/imports/sources_1/imports/new/systolic_array.v" \
+"../../../../sys.srcs/sources_1/new/tdp_bram.v" \
+"../../../../sys.srcs/sources_1/imports/sources_1/imports/new/tilling_agu.v" \
+"../../../../sys.srcs/sources_1/imports/sources_1/imports/new/weight_fifo.v" \
+"../../../../sys.srcs/sources_1/new/tb_accelerator_top.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Mon May 25 12:31:11 2026
+# Process ID         : 33092
+# Current directory  : D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/impl_1
+# Command line       : vivado.exe -log design_1_wrapper.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source design_1_wrapper.tcl -notrace
+# Log file           : D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/impl_1/design_1_wrapper.vdi
+# Journal file       : D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/impl_1\vivado.jou
+# Running On         : Trong_Hieu
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : AMD Ryzen 5 6600H with Radeon Graphics         
+# CPU Frequency      : 3294 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 16361 MB
+# Swap memory        : 30465 MB
+# Total Virtual      : 46827 MB
+# Available Virtual  : 4732 MB
+#-----------------------------------------------------------
+source design_1_wrapper.tcl -notrace
