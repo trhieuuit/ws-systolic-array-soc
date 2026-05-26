@@ -2,7 +2,7 @@
 -- Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
--- Date        : Mon May 25 12:29:30 2026
+-- Date        : Tue May 26 00:02:04 2026
 -- Host        : Trong_Hieu running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/ip/design_1_myip_0_0/design_1_myip_0_0_stub.vhdl

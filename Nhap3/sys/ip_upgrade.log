@@ -1,6 +1,48 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Mon May 25 23:53:56 2026
+| Host         : Trong_Hieu running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xck26-sfvc784-2LV-c
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_myip_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the update of design_1_myip_0_0 (xilinx.com:user:myip:1.0 (Rev. 7)) to current project options.
+
+
+
+
+
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Mon May 25 23:04:00 2026
+| Host         : Trong_Hieu running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xck26-sfvc784-2LV-c
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_myip_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the update of design_1_myip_0_0 (xilinx.com:user:myip:1.0 (Rev. 7)) to current project options.
+
+
+
+
+
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
 | Date         : Mon May 25 12:23:21 2026
 | Host         : Trong_Hieu running 64-bit major release  (build 9200)
 | Command      : upgrade_ip

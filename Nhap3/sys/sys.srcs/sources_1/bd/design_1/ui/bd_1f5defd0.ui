@@ -1,43 +1,43 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"0.441877",
-   "Default View_TopLeft":"18,-111",
+   "Default View_TopLeft":"9,-111",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0
 #  -string -flagsOSRD
-preplace inst zynq_ultra_ps_e_0 -pg 1 -lvl 5 -x 1790 -y 480 -defaultsOSRD
-preplace inst axi_dma_0 -pg 1 -lvl 7 -x 2620 -y 650 -defaultsOSRD
-preplace inst axi_smc -pg 1 -lvl 6 -x 2260 -y 470 -defaultsOSRD
+preplace inst zynq_ultra_ps_e_0 -pg 1 -lvl 5 -x 1800 -y 480 -defaultsOSRD
+preplace inst axi_dma_0 -pg 1 -lvl 7 -x 2630 -y 650 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 6 -x 2280 -y 470 -defaultsOSRD
 preplace inst rst_ps8_0_99M -pg 1 -lvl 1 -x 190 -y 600 -defaultsOSRD
-preplace inst axi_dma_1 -pg 1 -lvl 3 -x 900 -y 770 -defaultsOSRD
-preplace inst xlconcat_0 -pg 1 -lvl 4 -x 1290 -y 240 -defaultsOSRD
-preplace inst smartconnect_0 -pg 1 -lvl 4 -x 1290 -y 90 -defaultsOSRD
-preplace inst smartconnect_1 -pg 1 -lvl 4 -x 1290 -y 540 -defaultsOSRD
-preplace inst smartconnect_2 -pg 1 -lvl 4 -x 1290 -y 760 -defaultsOSRD
-preplace inst myip_0 -pg 1 -lvl 2 -x 540 -y 470 -defaultsOSRD
-preplace netloc axi_dma_0_mm2s_introut 1 3 5 1140 670 1430J 740 NJ 740 NJ 740 2790
-preplace netloc axi_dma_1_mm2s_introut 1 3 1 1090 240n
-preplace netloc axi_dma_1_s2mm_introut 1 3 1 1130 260n
-preplace netloc rst_ps8_0_99M_peripheral_aresetn 1 1 6 380 640 700 640 1110 440 1460J 630 2120 680 NJ
-preplace netloc xlconcat_0_dout 1 4 1 1470 240n
-preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 0 7 20 500 370 300 720 300 1100 450 1440 620 2110 620 2440
-preplace netloc zynq_ultra_ps_e_0_pl_resetn0 1 0 6 10 310 NJ 310 NJ 310 1080J 350 1460J 330 2100
-preplace netloc axi_dma_0_M_AXIS_MM2S 1 1 7 380 280 NJ 280 1120J 320 1430J 300 NJ 300 NJ 300 2800
-preplace netloc axi_dma_0_M_AXI_MM2S 1 3 5 1150 330 1440J 320 NJ 320 NJ 320 2790
-preplace netloc axi_dma_1_M_AXIS_MM2S 1 1 3 390 290 NJ 290 1070
-preplace netloc axi_dma_1_M_AXI_MM2S 1 3 1 1120 510n
+preplace inst axi_dma_1 -pg 1 -lvl 3 -x 910 -y 770 -defaultsOSRD
+preplace inst xlconcat_0 -pg 1 -lvl 4 -x 1320 -y 240 -defaultsOSRD
+preplace inst smartconnect_0 -pg 1 -lvl 4 -x 1320 -y 90 -defaultsOSRD
+preplace inst smartconnect_1 -pg 1 -lvl 4 -x 1320 -y 540 -defaultsOSRD
+preplace inst smartconnect_2 -pg 1 -lvl 4 -x 1320 -y 760 -defaultsOSRD
+preplace inst myip_0 -pg 1 -lvl 2 -x 550 -y 470 -defaultsOSRD
+preplace netloc axi_dma_0_mm2s_introut 1 3 5 1180 320 NJ 320 NJ 320 NJ 320 2820
+preplace netloc axi_dma_1_mm2s_introut 1 3 1 1110 240n
+preplace netloc axi_dma_1_s2mm_introut 1 3 1 1160 260n
+preplace netloc rst_ps8_0_99M_peripheral_aresetn 1 1 6 380 670 720 600 1150 850 NJ 850 2130 680 NJ
+preplace netloc xlconcat_0_dout 1 4 1 1480 240n
+preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 0 7 10 490 360 680 690 890 1100 450 1470 620 2120 620 2440
+preplace netloc zynq_ultra_ps_e_0_pl_resetn0 1 0 6 20 500 370J 660 700J 610 1120J 670 NJ 670 2110
+preplace netloc axi_dma_0_M_AXIS_MM2S 1 1 7 410 630 690J 620 1140J 640 NJ 640 2140J 560 NJ 560 2810
+preplace netloc axi_dma_0_M_AXI_MM2S 1 3 5 1170 630 NJ 630 NJ 630 2450J 550 2800
+preplace netloc axi_dma_1_M_AXIS_MM2S 1 1 3 400 640 730J 630 1080
+preplace netloc axi_dma_1_M_AXI_MM2S 1 3 1 1130 510n
 preplace netloc axi_dma_1_M_AXI_S2MM 1 3 1 N 730
-preplace netloc axi_smc_M00_AXI 1 6 1 2450 450n
-preplace netloc axi_smc_M01_AXI 1 1 6 400 630 NJ 630 NJ 630 1450J 310 NJ 310 2410
-preplace netloc axi_smc_M02_AXI 1 2 5 730 340 NJ 340 NJ 340 NJ 340 2400
+preplace netloc axi_smc_M00_AXI 1 6 1 2460 450n
+preplace netloc axi_smc_M01_AXI 1 1 6 390 650 NJ 650 NJ 650 NJ 650 NJ 650 2430
+preplace netloc axi_smc_M02_AXI 1 2 5 740 640 1090J 660 NJ 660 NJ 660 2420
 preplace netloc myip_0_M00_AXIS 1 2 1 710 470n
-preplace netloc smartconnect_0_M00_AXI 1 4 1 1480 90n
-preplace netloc smartconnect_1_M00_AXI 1 4 1 1430 420n
-preplace netloc smartconnect_2_M00_AXI 1 4 1 1480 440n
+preplace netloc smartconnect_0_M00_AXI 1 4 1 1490 90n
+preplace netloc smartconnect_1_M00_AXI 1 4 1 1460 420n
+preplace netloc smartconnect_2_M00_AXI 1 4 1 1490 440n
 preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM0_FPD 1 5 1 N 440
 preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM1_FPD 1 5 1 N 460
-levelinfo -pg 1 -10 190 540 900 1290 1790 2260 2620 2820
-pagesize -pg 1 -db -bbox -sgen -10 0 2840 1280
+levelinfo -pg 1 -10 190 550 910 1320 1800 2280 2630 2840
+pagesize -pg 1 -db -bbox -sgen -10 0 2840 900
 "
 }
 {

@@ -189,12 +189,67 @@
     reg [1:0]  out_state;
     reg [15:0] addr_c_cnt; // SỬA Ở ĐÂY: Nâng cấp lên 16-bit để đếm được ma trận lớn
 
-    reg done_w_d;
+//    reg done_w_d;
+//    always @(posedge sys_clk) begin
+//        if (!sys_reset) done_w_d <= 1'b0;
+//        else done_w_d <= done_w;
+//    end
+//    wire done_rising_edge = (done_w && !done_w_d);
+
+//    always @(posedge sys_clk) begin
+//        if (!sys_reset) begin
+//            out_state  <= 0;
+//            addr_c_cnt <= 0;
+//        end else begin
+//            case (out_state)
+//                2'd0: begin 
+//                    if (done_rising_edge) begin
+//                        out_state  <= 2'd1;
+//                        addr_c_cnt <= 0;
+//                    end
+//                end
+//                2'd1: begin 
+//                    out_state <= 2'd2;
+//                end
+//                2'd2: begin 
+//                    if (m00_axis_tready) begin
+//                        // SỬA Ở ĐÂY: Đếm đến (tổng số gói tin - 1)
+//                        if (addr_c_cnt == total_transfers - 1) begin
+//                            addr_c_cnt <= 0;
+//                            out_state  <= 2'd0; // Xong toàn bộ, về nghỉ
+//                        end else begin
+//                            addr_c_cnt <= addr_c_cnt + 1;
+//                            out_state  <= 2'd1; 
+//                        end
+//                    end
+//                end
+//            endcase
+//        end
+//    end
+
+//    assign m00_axis_tvalid = (out_state == 2'd2);
+//    assign m00_axis_tdata  = dma_data_c_w;
+//    // SỬA Ở ĐÂY: Bật cờ TLAST ở gói tin cuối cùng thực sự
+//    assign m00_axis_tlast  = (out_state == 2'd2) && (addr_c_cnt == total_transfers - 1);
+//    assign m00_axis_tstrb  = 64'hFFFFFFFF_FFFFFFFF; 
+
+//    wire dma_re_c_w = 1'b1; 
+//    wire [8:0] dma_addr_c_w = addr_c_cnt[8:0]; // Cắt lấy 9-bit đưa vào accelerator
+    
+    // =========================================================
+    // CÔNG TẮC AN TOÀN TRÁNH RACE CONDITION TRONG PING-PONG
+    // =========================================================
+    // Chỉ sẵn sàng gửi khi Đã tính xong VÀ CPU đã chốt MUX cùng 1 Bank
+    wire safe_to_send = done_w && (dma_bank_w == agu_bank_w);
+
+    reg safe_to_send_d;
     always @(posedge sys_clk) begin
-        if (!sys_reset) done_w_d <= 1'b0;
-        else done_w_d <= done_w;
+        if (!sys_reset) safe_to_send_d <= 1'b0;
+        else safe_to_send_d <= safe_to_send;
     end
-    wire done_rising_edge = (done_w && !done_w_d);
+    
+    // Tạo xung bắt đầu truyền dữ liệu
+    wire trigger_tx_pulse = (safe_to_send && !safe_to_send_d);
 
     always @(posedge sys_clk) begin
         if (!sys_reset) begin
@@ -203,7 +258,8 @@
         end else begin
             case (out_state)
                 2'd0: begin 
-                    if (done_rising_edge) begin
+                    // Chờ xung an toàn thay vì xung done_w đơn thuần
+                    if (trigger_tx_pulse) begin
                         out_state  <= 2'd1;
                         addr_c_cnt <= 0;
                     end
@@ -213,7 +269,6 @@
                 end
                 2'd2: begin 
                     if (m00_axis_tready) begin
-                        // SỬA Ở ĐÂY: Đếm đến (tổng số gói tin - 1)
                         if (addr_c_cnt == total_transfers - 1) begin
                             addr_c_cnt <= 0;
                             out_state  <= 2'd0; // Xong toàn bộ, về nghỉ
@@ -229,7 +284,7 @@
 
     assign m00_axis_tvalid = (out_state == 2'd2);
     assign m00_axis_tdata  = dma_data_c_w;
-    // SỬA Ở ĐÂY: Bật cờ TLAST ở gói tin cuối cùng thực sự
+    // Bật cờ TLAST ở gói tin cuối cùng thực sự
     assign m00_axis_tlast  = (out_state == 2'd2) && (addr_c_cnt == total_transfers - 1);
     assign m00_axis_tstrb  = 64'hFFFFFFFF_FFFFFFFF; 
 

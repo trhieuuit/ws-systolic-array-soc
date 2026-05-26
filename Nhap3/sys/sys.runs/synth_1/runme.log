@@ -8,12 +8,12 @@
   **** SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
   **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
   **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
-  **** Start of session at: Mon May 25 12:29:36 2026
+  **** Start of session at: Tue May 26 00:02:12 2026
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source design_1_wrapper.tcl -notrace
-create_project: Time (s): cpu = 00:00:13 ; elapsed = 00:00:09 . Memory (MB): peak = 518.957 ; gain = 213.379
+create_project: Time (s): cpu = 00:00:14 ; elapsed = 00:00:11 . Memory (MB): peak = 518.445 ; gain = 213.223
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/ip_repo/myip_1_0'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/2025.1/Vivado/data/ip'.
@@ -22,7 +22,7 @@ It is recommended to migrate these utility IPs to inline hdl  using the command 
 More information on inline hdl is available in UG994.
 Utility IP Component Instances:
  design_1_xlconcat_0_0
-add_files: Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 609.910 ; gain = 70.379
+add_files: Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 608.461 ; gain = 70.711
 Command: read_checkpoint -auto_incremental -incremental D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.srcs/utils_1/imports/synth_1/tiling_agu.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.srcs/utils_1/imports/synth_1/tiling_agu.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -35,27 +35,27 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 33208
+INFO: [Synth 8-7075] Helper process launched with PID 37056
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1857.277 ; gain = 203.469
+Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1855.301 ; gain = 203.082
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'design_1_wrapper' [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/hdl/design_1_wrapper.v:13]
 INFO: [Synth 8-6157] synthesizing module 'design_1' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:13]
-INFO: [Synth 8-6157] synthesizing module 'design_1_axi_dma_0_0' [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-24772-Trong_Hieu/realtime/design_1_axi_dma_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_dma_0_0' (0#1) [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-24772-Trong_Hieu/realtime/design_1_axi_dma_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_axi_dma_0_0' [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-2564-Trong_Hieu/realtime/design_1_axi_dma_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_dma_0_0' (0#1) [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-2564-Trong_Hieu/realtime/design_1_axi_dma_0_0_stub.v:6]
 WARNING: [Synth 8-7071] port 'mm2s_prmry_reset_out_n' of module 'design_1_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:256]
 WARNING: [Synth 8-7071] port 'm_axis_mm2s_tkeep' of module 'design_1_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:256]
 WARNING: [Synth 8-7071] port 'axi_dma_tstvec' of module 'design_1_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:256]
 WARNING: [Synth 8-7023] instance 'axi_dma_0' of module 'design_1_axi_dma_0_0' has 40 connections declared, but only 37 given [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:256]
-INFO: [Synth 8-6157] synthesizing module 'design_1_axi_dma_1_0' [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-24772-Trong_Hieu/realtime/design_1_axi_dma_1_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_dma_1_0' (0#1) [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-24772-Trong_Hieu/realtime/design_1_axi_dma_1_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_axi_dma_1_0' [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-2564-Trong_Hieu/realtime/design_1_axi_dma_1_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_dma_1_0' (0#1) [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-2564-Trong_Hieu/realtime/design_1_axi_dma_1_0_stub.v:6]
 WARNING: [Synth 8-7071] port 'mm2s_prmry_reset_out_n' of module 'design_1_axi_dma_1_0' is unconnected for instance 'axi_dma_1' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:294]
 WARNING: [Synth 8-7071] port 'm_axis_mm2s_tkeep' of module 'design_1_axi_dma_1_0' is unconnected for instance 'axi_dma_1' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:294]
 WARNING: [Synth 8-7071] port 's2mm_prmry_reset_out_n' of module 'design_1_axi_dma_1_0' is unconnected for instance 'axi_dma_1' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:294]
 WARNING: [Synth 8-7071] port 'axi_dma_tstvec' of module 'design_1_axi_dma_1_0' is unconnected for instance 'axi_dma_1' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:294]
 WARNING: [Synth 8-7023] instance 'axi_dma_1' of module 'design_1_axi_dma_1_0' has 64 connections declared, but only 60 given [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:294]
-INFO: [Synth 8-6157] synthesizing module 'design_1_axi_smc_0' [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-24772-Trong_Hieu/realtime/design_1_axi_smc_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_smc_0' (0#1) [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-24772-Trong_Hieu/realtime/design_1_axi_smc_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_axi_smc_0' [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-2564-Trong_Hieu/realtime/design_1_axi_smc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_smc_0' (0#1) [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-2564-Trong_Hieu/realtime/design_1_axi_smc_0_stub.v:6]
 WARNING: [Synth 8-7071] port 'M00_AXI_awprot' of module 'design_1_axi_smc_0' is unconnected for instance 'axi_smc' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:355]
 WARNING: [Synth 8-7071] port 'M00_AXI_wstrb' of module 'design_1_axi_smc_0' is unconnected for instance 'axi_smc' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:355]
 WARNING: [Synth 8-7071] port 'M00_AXI_arprot' of module 'design_1_axi_smc_0' is unconnected for instance 'axi_smc' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:355]
@@ -63,19 +63,19 @@ WARNING: [Synth 8-7071] port 'M02_AXI_awprot' of module 'design_1_axi_smc_0' is 
 WARNING: [Synth 8-7071] port 'M02_AXI_wstrb' of module 'design_1_axi_smc_0' is unconnected for instance 'axi_smc' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:355]
 WARNING: [Synth 8-7071] port 'M02_AXI_arprot' of module 'design_1_axi_smc_0' is unconnected for instance 'axi_smc' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:355]
 WARNING: [Synth 8-7023] instance 'axi_smc' of module 'design_1_axi_smc_0' has 137 connections declared, but only 131 given [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:355]
-INFO: [Synth 8-6157] synthesizing module 'design_1_myip_0_0' [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-24772-Trong_Hieu/realtime/design_1_myip_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_myip_0_0' (0#1) [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-24772-Trong_Hieu/realtime/design_1_myip_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_myip_0_0' [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-2564-Trong_Hieu/realtime/design_1_myip_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_myip_0_0' (0#1) [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-2564-Trong_Hieu/realtime/design_1_myip_0_0_stub.v:6]
 WARNING: [Synth 8-7071] port 'm00_axis_tstrb' of module 'design_1_myip_0_0' is unconnected for instance 'myip_0' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:487]
 WARNING: [Synth 8-7023] instance 'myip_0' of module 'design_1_myip_0_0' has 42 connections declared, but only 41 given [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:487]
-INFO: [Synth 8-6157] synthesizing module 'design_1_rst_ps8_0_99M_0' [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-24772-Trong_Hieu/realtime/design_1_rst_ps8_0_99M_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_rst_ps8_0_99M_0' (0#1) [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-24772-Trong_Hieu/realtime/design_1_rst_ps8_0_99M_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_rst_ps8_0_99M_0' [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-2564-Trong_Hieu/realtime/design_1_rst_ps8_0_99M_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_rst_ps8_0_99M_0' (0#1) [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-2564-Trong_Hieu/realtime/design_1_rst_ps8_0_99M_0_stub.v:6]
 WARNING: [Synth 8-7071] port 'mb_reset' of module 'design_1_rst_ps8_0_99M_0' is unconnected for instance 'rst_ps8_0_99M' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:529]
 WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'design_1_rst_ps8_0_99M_0' is unconnected for instance 'rst_ps8_0_99M' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:529]
 WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'design_1_rst_ps8_0_99M_0' is unconnected for instance 'rst_ps8_0_99M' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:529]
 WARNING: [Synth 8-7071] port 'interconnect_aresetn' of module 'design_1_rst_ps8_0_99M_0' is unconnected for instance 'rst_ps8_0_99M' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:529]
 WARNING: [Synth 8-7023] instance 'rst_ps8_0_99M' of module 'design_1_rst_ps8_0_99M_0' has 10 connections declared, but only 6 given [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:529]
-INFO: [Synth 8-6157] synthesizing module 'design_1_smartconnect_0_0' [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-24772-Trong_Hieu/realtime/design_1_smartconnect_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_smartconnect_0_0' (0#1) [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-24772-Trong_Hieu/realtime/design_1_smartconnect_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_smartconnect_0_0' [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-2564-Trong_Hieu/realtime/design_1_smartconnect_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_smartconnect_0_0' (0#1) [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-2564-Trong_Hieu/realtime/design_1_smartconnect_0_0_stub.v:6]
 WARNING: [Synth 8-7071] port 'S01_AXI_awready' of module 'design_1_smartconnect_0_0' is unconnected for instance 'smartconnect_0' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:536]
 WARNING: [Synth 8-7071] port 'S01_AXI_wready' of module 'design_1_smartconnect_0_0' is unconnected for instance 'smartconnect_0' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:536]
 WARNING: [Synth 8-7071] port 'S01_AXI_bid' of module 'design_1_smartconnect_0_0' is unconnected for instance 'smartconnect_0' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:536]
@@ -90,8 +90,8 @@ WARNING: [Synth 8-7071] port 'S01_AXI_rlast' of module 'design_1_smartconnect_0_
 WARNING: [Synth 8-7071] port 'S01_AXI_ruser' of module 'design_1_smartconnect_0_0' is unconnected for instance 'smartconnect_0' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:536]
 WARNING: [Synth 8-7071] port 'S01_AXI_rvalid' of module 'design_1_smartconnect_0_0' is unconnected for instance 'smartconnect_0' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:536]
 WARNING: [Synth 8-7023] instance 'smartconnect_0' of module 'design_1_smartconnect_0_0' has 77 connections declared, but only 64 given [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:536]
-INFO: [Synth 8-6157] synthesizing module 'design_1_smartconnect_0_1' [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-24772-Trong_Hieu/realtime/design_1_smartconnect_0_1_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_smartconnect_0_1' (0#1) [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-24772-Trong_Hieu/realtime/design_1_smartconnect_0_1_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_smartconnect_0_1' [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-2564-Trong_Hieu/realtime/design_1_smartconnect_0_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_smartconnect_0_1' (0#1) [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-2564-Trong_Hieu/realtime/design_1_smartconnect_0_1_stub.v:6]
 WARNING: [Synth 8-7071] port 'S01_AXI_awready' of module 'design_1_smartconnect_0_1' is unconnected for instance 'smartconnect_1' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:601]
 WARNING: [Synth 8-7071] port 'S01_AXI_wready' of module 'design_1_smartconnect_0_1' is unconnected for instance 'smartconnect_1' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:601]
 WARNING: [Synth 8-7071] port 'S01_AXI_bid' of module 'design_1_smartconnect_0_1' is unconnected for instance 'smartconnect_1' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:601]
@@ -106,8 +106,8 @@ WARNING: [Synth 8-7071] port 'S01_AXI_rlast' of module 'design_1_smartconnect_0_
 WARNING: [Synth 8-7071] port 'S01_AXI_ruser' of module 'design_1_smartconnect_0_1' is unconnected for instance 'smartconnect_1' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:601]
 WARNING: [Synth 8-7071] port 'S01_AXI_rvalid' of module 'design_1_smartconnect_0_1' is unconnected for instance 'smartconnect_1' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:601]
 WARNING: [Synth 8-7023] instance 'smartconnect_1' of module 'design_1_smartconnect_0_1' has 77 connections declared, but only 64 given [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:601]
-INFO: [Synth 8-6157] synthesizing module 'design_1_smartconnect_0_2' [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-24772-Trong_Hieu/realtime/design_1_smartconnect_0_2_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_smartconnect_0_2' (0#1) [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-24772-Trong_Hieu/realtime/design_1_smartconnect_0_2_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_smartconnect_0_2' [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-2564-Trong_Hieu/realtime/design_1_smartconnect_0_2_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_smartconnect_0_2' (0#1) [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-2564-Trong_Hieu/realtime/design_1_smartconnect_0_2_stub.v:6]
 WARNING: [Synth 8-7071] port 'S01_AXI_awready' of module 'design_1_smartconnect_0_2' is unconnected for instance 'smartconnect_2' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:666]
 WARNING: [Synth 8-7071] port 'S01_AXI_wready' of module 'design_1_smartconnect_0_2' is unconnected for instance 'smartconnect_2' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:666]
 WARNING: [Synth 8-7071] port 'S01_AXI_bid' of module 'design_1_smartconnect_0_2' is unconnected for instance 'smartconnect_2' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:666]
@@ -126,8 +126,8 @@ INFO: [Synth 8-6157] synthesizing module 'design_1_xlconcat_0_0' [d:/Hoc_Tap/Dai
 INFO: [Synth 8-6157] synthesizing module 'xlconcat_v2_1_7_xlconcat' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.srcs/sources_1/bd/design_1/ipshared/9c1a/hdl/xlconcat_v2_1_vl_rfs.v:59]
 INFO: [Synth 8-6155] done synthesizing module 'xlconcat_v2_1_7_xlconcat' (0#1) [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.srcs/sources_1/bd/design_1/ipshared/9c1a/hdl/xlconcat_v2_1_vl_rfs.v:59]
 INFO: [Synth 8-6155] done synthesizing module 'design_1_xlconcat_0_0' (0#1) [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.srcs/sources_1/bd/design_1/ip/design_1_xlconcat_0_0/synth/design_1_xlconcat_0_0.v:53]
-INFO: [Synth 8-6157] synthesizing module 'design_1_zynq_ultra_ps_e_0_0' [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-24772-Trong_Hieu/realtime/design_1_zynq_ultra_ps_e_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_zynq_ultra_ps_e_0_0' (0#1) [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-24772-Trong_Hieu/realtime/design_1_zynq_ultra_ps_e_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_zynq_ultra_ps_e_0_0' [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-2564-Trong_Hieu/realtime/design_1_zynq_ultra_ps_e_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_zynq_ultra_ps_e_0_0' (0#1) [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/.Xil/Vivado-2564-Trong_Hieu/realtime/design_1_zynq_ultra_ps_e_0_0_stub.v:6]
 WARNING: [Synth 8-7071] port 'saxigp0_awready' of module 'design_1_zynq_ultra_ps_e_0_0' is unconnected for instance 'zynq_ultra_ps_e_0' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:742]
 WARNING: [Synth 8-7071] port 'saxigp0_wready' of module 'design_1_zynq_ultra_ps_e_0_0' is unconnected for instance 'zynq_ultra_ps_e_0' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:742]
 WARNING: [Synth 8-7071] port 'saxigp0_bid' of module 'design_1_zynq_ultra_ps_e_0_0' is unconnected for instance 'zynq_ultra_ps_e_0' [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/synth/design_1.v:742]
@@ -253,24 +253,24 @@ WARNING: [Synth 8-7129] Port In101[0] in module xlconcat_v2_1_7_xlconcat is eith
 WARNING: [Synth 8-7129] Port In102[0] in module xlconcat_v2_1_7_xlconcat is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1981.684 ; gain = 327.875
+Finished RTL Elaboration : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1978.184 ; gain = 325.965
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1981.684 ; gain = 327.875
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1978.184 ; gain = 325.965
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1981.684 ; gain = 327.875
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1978.184 ; gain = 325.965
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.030 . Memory (MB): peak = 1981.684 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.047 . Memory (MB): peak = 1978.184 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
 Parsing XDC File [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0_in_context.xdc] for cell 'design_1_i/zynq_ultra_ps_e_0'
-create_clock: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1983.781 ; gain = 2.098
+create_clock: Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1996.488 ; gain = 10.039
 Finished Parsing XDC File [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0_in_context.xdc] for cell 'design_1_i/zynq_ultra_ps_e_0'
 Parsing XDC File [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/ip/design_1_axi_dma_0_0/design_1_axi_dma_0_0/design_1_axi_dma_0_0_in_context.xdc] for cell 'design_1_i/axi_dma_0'
 Finished Parsing XDC File [d:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.gen/sources_1/bd/design_1/ip/design_1_axi_dma_0_0/design_1_axi_dma_0_0/design_1_axi_dma_0_0_in_context.xdc] for cell 'design_1_i/axi_dma_0'
@@ -292,15 +292,15 @@ Parsing XDC File [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/dont_tou
 Finished Parsing XDC File [D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1983.781 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1996.488 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.019 . Memory (MB): peak = 1983.781 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.026 . Memory (MB): peak = 1996.488 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1983.781 ; gain = 329.973
+Finished Constraint Validation : Time (s): cpu = 00:00:36 ; elapsed = 00:00:39 . Memory (MB): peak = 1996.488 ; gain = 344.270
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
@@ -308,16 +308,16 @@ Start Loading Part and Timing Information
 Loading part: xck26-sfvc784-2LV-c
 INFO: [Synth 8-6742] Reading net delay rules and data
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1983.781 ; gain = 329.973
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:36 ; elapsed = 00:00:39 . Memory (MB): peak = 1996.488 ; gain = 344.270
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1983.781 ; gain = 329.973
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:36 ; elapsed = 00:00:39 . Memory (MB): peak = 1996.488 ; gain = 344.270
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:26 . Memory (MB): peak = 1983.781 ; gain = 329.973
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:36 ; elapsed = 00:00:39 . Memory (MB): peak = 1996.488 ; gain = 344.270
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -340,25 +340,25 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 1995.996 ; gain = 342.188
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:40 ; elapsed = 00:00:43 . Memory (MB): peak = 1996.488 ; gain = 344.270
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:35 ; elapsed = 00:00:39 . Memory (MB): peak = 2713.582 ; gain = 1059.773
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:55 ; elapsed = 00:01:00 . Memory (MB): peak = 2713.980 ; gain = 1061.762
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:35 ; elapsed = 00:00:39 . Memory (MB): peak = 2713.582 ; gain = 1059.773
+Finished Timing Optimization : Time (s): cpu = 00:00:55 ; elapsed = 00:01:00 . Memory (MB): peak = 2713.980 ; gain = 1061.762
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:35 ; elapsed = 00:00:39 . Memory (MB): peak = 2726.410 ; gain = 1072.602
+Finished Technology Mapping : Time (s): cpu = 00:00:55 ; elapsed = 00:01:00 . Memory (MB): peak = 2727.359 ; gain = 1075.141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -376,37 +376,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:40 ; elapsed = 00:00:44 . Memory (MB): peak = 2959.957 ; gain = 1306.148
+Finished IO Insertion : Time (s): cpu = 00:01:03 ; elapsed = 00:01:09 . Memory (MB): peak = 2960.148 ; gain = 1307.930
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:40 ; elapsed = 00:00:44 . Memory (MB): peak = 2959.957 ; gain = 1306.148
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:03 ; elapsed = 00:01:09 . Memory (MB): peak = 2960.148 ; gain = 1307.930
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:40 ; elapsed = 00:00:44 . Memory (MB): peak = 2959.957 ; gain = 1306.148
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:03 ; elapsed = 00:01:09 . Memory (MB): peak = 2960.148 ; gain = 1307.930
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:40 ; elapsed = 00:00:44 . Memory (MB): peak = 2959.957 ; gain = 1306.148
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:03 ; elapsed = 00:01:09 . Memory (MB): peak = 2960.148 ; gain = 1307.930
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:40 ; elapsed = 00:00:44 . Memory (MB): peak = 2959.957 ; gain = 1306.148
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:03 ; elapsed = 00:01:09 . Memory (MB): peak = 2960.148 ; gain = 1307.930
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:40 ; elapsed = 00:00:44 . Memory (MB): peak = 2959.957 ; gain = 1306.148
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:03 ; elapsed = 00:01:09 . Memory (MB): peak = 2960.148 ; gain = 1307.930
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -440,16 +440,16 @@ Report Cell Usage:
 |9     |design_1_zynq_ultra_ps_e_0 |     1|
 +------+---------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:40 ; elapsed = 00:00:44 . Memory (MB): peak = 2959.957 ; gain = 1306.148
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:03 ; elapsed = 00:01:09 . Memory (MB): peak = 2960.148 ; gain = 1307.930
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:26 ; elapsed = 00:00:37 . Memory (MB): peak = 2959.957 ; gain = 1304.051
-Synthesis Optimization Complete : Time (s): cpu = 00:00:41 ; elapsed = 00:00:45 . Memory (MB): peak = 2959.957 ; gain = 1306.148
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:39 ; elapsed = 00:00:57 . Memory (MB): peak = 2960.148 ; gain = 1289.625
+Synthesis Optimization Complete : Time (s): cpu = 00:01:04 ; elapsed = 00:01:10 . Memory (MB): peak = 2960.148 ; gain = 1307.930
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.029 . Memory (MB): peak = 2959.957 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.068 . Memory (MB): peak = 2960.148 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2959.957 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2960.148 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
@@ -457,7 +457,7 @@ Synth Design complete | Checksum: 30b99354
 INFO: [Common 17-83] Releasing license: Synthesis
 50 Infos, 187 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:48 ; elapsed = 00:00:57 . Memory (MB): peak = 2959.957 ; gain = 2346.430
+synth_design: Time (s): cpu = 00:01:16 ; elapsed = 00:01:28 . Memory (MB): peak = 2960.148 ; gain = 2348.172
 INFO: [Common 17-1381] The checkpoint 'D:/Hoc_Tap/Dai_hoc/HK6/SoC/Nhap3/sys/sys.runs/synth_1/design_1_wrapper.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file design_1_wrapper_utilization_synth.rpt -pb design_1_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon May 25 12:30:58 2026...
+INFO: [Common 17-206] Exiting Vivado at Tue May 26 00:04:13 2026...
