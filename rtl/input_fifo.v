@@ -8,6 +8,7 @@ module input_fifo #(
     // Write Domain (e.g., from AXI DMA)
     input  wire         wr_clk_i,
     input  wire         rst_i,      // Active high reset for XPM
+    input  wire         pe_en_i,
     input  wire         wr_en_i,
     input  wire [DATA_WIDTH*N-1:0] din_i,
     output wire         full_o,
@@ -65,42 +66,51 @@ module input_fifo #(
     
     
 //////////////////////////////////////////////////////////////////////////////////
-//                      Chained delay register (INPUT FIFO)                     //
+//                     Chained delay register (INPUT FIFO)                      //
 //////////////////////////////////////////////////////////////////////////////////
     
-    // We need a 2D array of registers to act as our delay pipelines
     reg [DATA_WIDTH-1:0]   inff_delay_r [0:N-1][0:N-1]; 
-    wire [DATA_WIDTH-1:0]  pe_input_data_w [0:N-1]; // The final, properly staggered data
+    wire [DATA_WIDTH-1:0]  pe_input_data_w [0:N-1];
     
-    
+ //   genvar r, d;
     generate
         for (r = 0; r < N; r = r + 1) begin : INPUT_DELAY_CHAIN
             
-            if (r == 0) begin
-                // Row 0 goes straight through, no delay needed!
-                assign pe_input_data_w[0] = fifo_split_data_w[0];
+            // 1. Sửa lỗi ngược Wavefront
+            localparam D_STAGES = N - 1 - r;
+            
+            if (D_STAGES == 0) begin
+                // Đi thẳng: Dùng Multiplexer để bơm số 0 nếu ngưng đọc
+                assign pe_input_data_w[r] = rd_en_i ? fifo_split_data_w[r] : {DATA_WIDTH{1'b0}};
                 
             end else begin
-                // Create a shift register chain for row 'r' that is 'r' stages deep
-                
-                // First stage catches the raw unpacked data
-                always @(posedge rd_clk_i) begin
-                    inff_delay_r[r][0] <= fifo_split_data_w[r]; 
-                end
-                
-                // Middle stages (if any) daisy-chain together
-                for (d = 1; d < r; d = d + 1) begin : SKEW_STAGE
-                    always @(posedge rd_clk_i) begin
-                        inff_delay_r[r][d] <= inff_delay_r[r][d-1];
+                // 2. Tầng đầu tiên: Bắt data HOẶC Bơm bọt khí (0)
+                always @(posedge rd_clk_i or posedge rst_i) begin
+                    if (rst_i) begin
+                        inff_delay_r[r][0] <= {DATA_WIDTH{1'b0}}; // Xóa rác 'x'
+                    end else if (pe_en_i) begin                   // Dịch chuyển theo PE
+                        if (rd_en_i)
+                            inff_delay_r[r][0] <= fifo_split_data_w[r]; 
+                        else
+                            inff_delay_r[r][0] <= {DATA_WIDTH{1'b0}}; // Bơm số 0
                     end
                 end
                 
-                // The final output of this row's chain goes to the systolic array
-                assign pe_input_data_w[r] = inff_delay_r[r][r-1];
+                // 3. Các tầng sau: Liên tục đẩy dữ liệu đi
+                for (d = 1; d < D_STAGES; d = d + 1) begin : SKEW_STAGE
+                    always @(posedge rd_clk_i or posedge rst_i) begin
+                        if (rst_i) begin
+                            inff_delay_r[r][d] <= {DATA_WIDTH{1'b0}};
+                        end else if (pe_en_i) begin
+                            inff_delay_r[r][d] <= inff_delay_r[r][d-1];
+                        end
+                    end
+                end
+                
+                assign pe_input_data_w[r] = inff_delay_r[r][D_STAGES-1];
             end
         end
     endgenerate
-  
 //////////////////////////////////////////////////////////////////////////////////
 //               Merge read data: 8b data x 16 width  -> 128 bit                //
 //////////////////////////////////////////////////////////////////////////////////     

@@ -23,13 +23,18 @@ module pe#(
     wire signed [(2*DATA_WIDTH)-1:0] mul = input_i * weight_o;
     assign psum_o = psum_r +  mul;
   
-    always @(posedge clk_i or negedge rst_n) begin
+  always @(posedge clk_i or negedge rst_n) begin
         if (!rst_n) begin
             weight_o <= {DATA_WIDTH{1'b0}};
-            input_o  <= {DATA_WIDTH{1'b0}};
-            psum_r   <= {DATA_WIDTH{1'b0}};
         end else if (loadw_i) begin
             weight_o <= weight_i;
+        end
+    end
+  
+    always @(posedge clk_i or negedge rst_n) begin
+        if (!rst_n) begin
+            input_o  <= {DATA_WIDTH{1'b0}};
+            psum_r   <= {DATA_WIDTH{1'b0}};
         end else if (en_i) begin
             psum_r  <= psum_i; 
             input_o <= input_i;

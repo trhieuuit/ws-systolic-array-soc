@@ -45,7 +45,7 @@ module pe_grid#(
     generate
         // 1. INPUT ASSIGN (Rows)
         for (r = 0; r < N; r = r + 1) begin : INPUT_ASSIGN
-            assign input_pe_w[r][0] = input_i[(r+1)*DATA_WIDTH - 1 : r*DATA_WIDTH];
+            assign input_pe_w[r][0] = input_i[(N-r)*DATA_WIDTH - 1 : (N-1-r)*DATA_WIDTH];
         end
         
         // 2. WEIGHT ASSIGN (Columns) 

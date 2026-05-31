@@ -1,135 +1,161 @@
 `timescale 1ns / 1ps
+//==========================================================//
+//                Systolic Array Top Module                 //
+//==========================================================//
+// This module wires Input, Weight, Output FIFO, Controller 
+// and PE grids together
 
-module systolic_array#(
-    parameter N = 16,
+module systolic_array #(
+    parameter N          = 16,
     parameter DATA_WIDTH = 8,
     parameter PSUM_WIDTH = 32
 )(
-        input wire      clk_i,
-        input wire      rst_n,
-        input wire      start_i,
-        input wire      loadw_i,
-        output wire     done_o,
-        
-        // AXI DMA Clock (Often different from clk_i)
-        input  wire         dma_clk_i,
-        
-        // DMA -> Weight FIFO Interface
-        input  wire         wff_wr_en_i,
-        input  wire [(N*DATA_WIDTH)-1:0] wff_din_i,
-        output wire         wff_full_o,
-        
-        // DMA -> Input FIFO Interface
-        input  wire         inff_wr_en_i,
-        input  wire [(N*DATA_WIDTH)-1:0] inff_din_i,
-        output wire         inff_full_o,
-        
-        // Output FIFO -> DMA Interface
-        input  wire         outff_rd_en_i,
-        output wire [(N*PSUM_WIDTH)-1:0] outff_dout_o,
-        output wire         outff_empty_o
-    );
+    // Global Ports
+    input  wire                      clk_i,
+    input  wire                      rst_n,
+    input  wire                      start_i,
+    input  wire                      loadw_i,
+    output wire                      done_o,
+    
+    // DMA Clock
+    input  wire                      dma_clk_i, 
+    
+    // Weight FIFO (WFF) Interface
+    input  wire                      wff_wr_en_i,
+    input  wire [(N*DATA_WIDTH)-1:0] wff_din_i,
+    output wire                      wff_full_o,
+    
+    // Input FIFO (INFF) Interface
+    input  wire                      inff_wr_en_i,
+    input  wire [(N*DATA_WIDTH)-1:0] inff_din_i,
+    output wire                      inff_full_o,
+    
+    // Output FIFO (OUTFF) Interface
+    input  wire                      outff_rd_en_i,
+    output wire [(N*PSUM_WIDTH)-1:0] outff_dout_o,
+    output wire                      outff_empty_o
+);
 
-    wire pe_en_w;
-    wire wff_rd_w, inff_rd_w, outff_wr_w;
+//==========================================================//
+//                    Wire Declaration                      //
+//==========================================================//
+    
     wire rst_i = ~rst_n;
 
-//////////////////////////////////////////////////////////////////////////////////
-//                                  Controller                                  //
-//////////////////////////////////////////////////////////////////////////////////\
+    // Controller wires
+    wire pe_en_w;
     wire pe_loadw_w;
+    wire wff_rd_w;
+    wire inff_rd_w;
+    wire outff_wr_w;
+
+    // FIFO status monitoring wires
+    wire wff_empty_w;
+    wire inff_empty_w;
+    wire outff_full_w;
+    
+    // Interconnect wires between FIFOs and PE Grid
+    wire [(N*DATA_WIDTH)-1:0] wff_dout_w;
+    wire [(N*DATA_WIDTH)-1:0] inff_dout_w;
+    wire [(N*PSUM_WIDTH)-1:0] outff_din_w;
+
+//==========================================================//
+//                      Controller                          //
+//==========================================================//
+
     controller #(
         .N(N)
-    )ctrl(
-        .clk_i (clk_i),
-        .rst_n  (rst_n),          
-        .loadw_i (loadw_i),          // Load weight signal
-        .start_i (start_i),        // Start execution + output collection
+    ) ctrl (
+        .clk_i         (clk_i),
+        .rst_n         (rst_n),          
+        .loadw_i       (loadw_i),          
+        .start_i       (start_i),        
         
-        .in_ff_rd_o (inff_rd_w),       // Input FIFO read (only applies to the first FIFO, latter ones are mapped to shift register)
-        .w_ff_rd_o (wff_rd_w),      // Weight FIFO read (applies to all FIFO)
-        .out_ff_wr_o (outff_wr_w),    // Output FIFO write (only applies to the first FIFO, latter ones are mapped to shift register)
-        .pe_loadw_o (pe_loadw_w),
-        .pe_en_o      (pe_en_w),        // PE enable signal
-        .done_o (done_o)
+        // FIFO status inputs
+        .w_ff_empty_i  (wff_empty_w),
+        .in_ff_empty_i (inff_empty_w),
+        .out_ff_full_i (outff_full_w),
+
+        // Control signal outputs
+        .in_ff_rd_o    (inff_rd_w),        
+        .w_ff_rd_o     (wff_rd_w),      
+        .out_ff_wr_o   (outff_wr_w),    
+        .pe_loadw_o    (pe_loadw_w),
+        .pe_en_o       (pe_en_w),        
+        .done_o        (done_o)
     );
-   
-//////////////////////////////////////////////////////////////////////////////////
-//                                 Weight FIFO                                  //
-//////////////////////////////////////////////////////////////////////////////////
-    wire [(N*DATA_WIDTH)-1:0] wff_dout_w;
-    weight_fifo#(
+
+//==========================================================//
+//                      Weight FIFO                         //
+//==========================================================//
+
+    weight_fifo #(
         .N(N),
         .DATA_WIDTH(DATA_WIDTH)
-    ) weight_ff(
-        // Write Domain (from AXI DMA)
-        .wr_clk_i   (dma_clk_i),
-        .rst_i      (rst_i),          // FIXED: Connected reset
-        .wr_en_i    (wff_wr_en_i),    // FIXED: Routed to top
-        .din_i      (wff_din_i),      // FIXED: Routed to top
-        .full_o     (wff_full_o),     // FIXED: Routed to top
+    ) weight_ff (
+        .wr_clk_i (dma_clk_i),
+        .rst_i    (rst_i),          
+        .wr_en_i  (wff_wr_en_i),    
+        .din_i    (wff_din_i),      
+        .full_o   (wff_full_o),     
     
-        // Read Domain (to Systolic Array)
-        .rd_clk_i   (clk_i),
-        .rd_en_i    (wff_rd_w),
-        .empty_o    (),               // Can leave empty if controller manages timing
-        .dout_o     (wff_dout_w)
+        .rd_clk_i (clk_i),
+        .rd_en_i  (wff_rd_w),
+        .empty_o  (wff_empty_w), 
+        .dout_o   (wff_dout_w)
     );
-    
-//////////////////////////////////////////////////////////////////////////////////
-//                                  Input FIFO                                  //
-//////////////////////////////////////////////////////////////////////////////////   
-    wire [(N*DATA_WIDTH)-1:0] inff_dout_w;
+
+//==========================================================//
+//                      Input FIFO                          //
+//==========================================================//   
+
     input_fifo #(
         .N(N),
         .DATA_WIDTH(DATA_WIDTH)
-    )input_ff(
-        // Write Domain (from AXI DMA)
-        .wr_clk_i   (dma_clk_i),
-        .rst_i      (rst_i),          // FIXED: Connected reset
-        .wr_en_i    (inff_wr_en_i),   // FIXED: Routed to top
-        .din_i      (inff_din_i),     // FIXED: Routed to top
-        .full_o     (inff_full_o),    // FIXED: Routed to top
+    ) input_ff (
+        .wr_clk_i (dma_clk_i),
+        .rst_i    (rst_i),          
+        .wr_en_i  (inff_wr_en_i),   
+        .pe_en_i  (pe_en_w),
+        .din_i    (inff_din_i),     
+        .full_o   (inff_full_o),    
     
-        // Read Domain (to Systolic Array)
-        .rd_clk_i   (clk_i),
-        .rd_en_i    (inff_rd_w),
-        .empty_o    (),
-        .dout_o     (inff_dout_w)
+        .rd_clk_i (clk_i),
+        .rd_en_i  (inff_rd_w),
+        .empty_o  (inff_empty_w), 
+        .dout_o   (inff_dout_w)
     );
 
-//////////////////////////////////////////////////////////////////////////////////
-//                                 Output FIFO                                  //
-//////////////////////////////////////////////////////////////////////////////////   
-    wire [(N*PSUM_WIDTH)-1:0] outff_din_w;
+//==========================================================//
+//                      Output FIFO                         //
+//==========================================================//   
+
     output_fifo #(
         .N(N),
         .PSUM_WIDTH(PSUM_WIDTH)
-    )output_ff(
-        // Write Domain (from Systolic Array)
-        .wr_clk_i   (clk_i),          // FIXED: Array writes to this FIFO
-        .rst_i      (rst_i),          // FIXED: Connected reset
-        .wr_en_i    (outff_wr_w),
-        .din_i      (outff_din_w),
-        .full_o     (),               // Array assumes DMA empties it fast enough
+    ) output_ff (
+        .wr_clk_i (clk_i),          
+        .rst_i    (rst_i),          
+        .wr_en_i  (outff_wr_w),
+        .din_i    (outff_din_w),
+        .full_o   (outff_full_w), 
     
-        // Read Domain (to AXI DMA)
-        .rd_clk_i   (dma_clk_i),      // FIXED: DMA reads from this FIFO
-        .rd_en_i    (outff_rd_en_i),  // FIXED: Routed to top
-        .empty_o    (outff_empty_o),  // FIXED: Routed to top
-        .dout_o     (outff_dout_o)    // FIXED: Routed to top
+        .rd_clk_i (dma_clk_i),      
+        .rd_en_i  (outff_rd_en_i),  
+        .empty_o  (outff_empty_o),  
+        .dout_o   (outff_dout_o)    
     );
-   
-    
-//////////////////////////////////////////////////////////////////////////////////
-//                                 16x16 PE grid                                //
-//////////////////////////////////////////////////////////////////////////////////
+
+//==========================================================//
+//                     16x16 PE Grid                        //
+//==========================================================//
+
     pe_grid #(
         .N(N),
         .DATA_WIDTH(DATA_WIDTH),
         .PSUM_WIDTH(PSUM_WIDTH)
-    )pe_grid (
-         .clk_i   (clk_i),
+    ) pe_grid_inst (
+        .clk_i    (clk_i),
         .rst_n    (rst_n),
         .loadw_i  (pe_loadw_w),
         .en_i     (pe_en_w),
@@ -137,9 +163,5 @@ module systolic_array#(
         .input_i  (inff_dout_w),
         .output_o (outff_din_w) 
     );
-    
-    
-    
-    
 
- endmodule
+endmodule
