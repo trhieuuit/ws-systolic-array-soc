@@ -29,7 +29,7 @@ The accelerator integrates the custom Systolic IP with the Zynq UltraScale+ proc
 * **EDA Tool**: Xilinx Vivado 2025.1
 * **Firmware/Drivers**: C (Linux Userspace Application)
 * **Target Platform**: AMD/Xilinx Kria KV260 Vision AI Starter Kit
-* **OS**: Ubuntu Linux (ARM Cortex-A53)
+* **OS**: PetaLinux (ARM Cortex-A53)
 
 ## Repository Structure
 
