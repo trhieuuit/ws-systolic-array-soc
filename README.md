@@ -77,10 +77,7 @@ sudo ./gemm_accel
 
 Upon successful execution, the terminal will display the verification results and performance comparison:
 
-```text
-(images/timing_summary.png)
-
-```
+![Timing Summary](docs/timing_summary.png)
 
 ## 🤝 Contributing
 
