@@ -73,17 +73,19 @@ sudo ./gemm_accel
 The following metrics confirm that the design meets all timing constraints and is optimized for the KV260 target device.
 
 | Metric | Visualization |
-| --- | --- |
-| **Timing Closure** |  |
-| **Resource Utilization** |  |
-| **Device Floorplan** |  |
-| **Power Profile** |  |
+| :--- | :--- |
+| **Timing Closure** | ![Timing](images/timing.png) |
+| **Resource Utilization** | ![Utilization](images/utilization.png) |
+| **Device Floorplan** | ![Device Floorplan](images/device_floorplan.png) |
+| **Power Profile** | ![Power](images/power.png) |
 
 ---
 
-##  Expected Output
+## Expected Output
 
 Upon successful execution, the terminal verifies the matrix multiplication results against a CPU-based golden model and outputs the performance speedup.
+
+![Verification Result](images/result_1024x1024.png)
 
 ---
 
