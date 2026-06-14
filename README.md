@@ -78,13 +78,7 @@ sudo ./gemm_accel
 Upon successful execution, the terminal will display the verification results and performance comparison:
 
 ```text
-[ KẾT QUẢ ĐỐI CHIẾU ]
--> PASSED: 16384/16384 phần tử khớp nhau 100%!
-
-[ THỐNG KÊ HIỆU NĂNG ]
-- Thời gian chạy thuần CPU (ARM): x.xxx giây
-- Thời gian chạy gia tốc FPGA    : y.yyy giây
-=> HỆ SỐ TĂNG TỐC (SPEEDUP)      : ZZ.Z LẦN
+(images/timing_summary.png)
 
 ```
 
