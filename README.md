@@ -1,9 +1,9 @@
 
-# 🚀 FPGA-Based GEMM Accelerator: Systolic Array & Ping-Pong Pipelining
+# FPGA-Based GEMM Accelerator: Systolic Array & Ping-Pong Pipelining
 
 This repository contains the complete hardware/software co-design for a custom **Matrix Multiplication (GEMM) Accelerator**. Deployed on the Xilinx Kria KV260 Vision AI Starter Kit, the system features a 16x16 Systolic Array core, a Dual AXI DMA architecture, and a high-performance Linux Userspace Driver implementing an asynchronous Ping-Pong buffer pipeline to completely hide memory transfer latency.
 
-## ✨ Core Features
+## Core Features
 
 * **16x16 Systolic Array Architecture**: A highly optimized processing element (PE) grid designed for high-throughput Multiply-Accumulate (MAC) operations.
 * **Dual AXI DMA Network**: Eliminates bus bottlenecks. `axi_dma_0` handles Input matrices (MM2S), while `axi_dma_1` parallelly handles Weights (MM2S) and Output results (S2MM).
@@ -13,7 +13,7 @@ This repository contains the complete hardware/software co-design for a custom *
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 The accelerator integrates the custom Systolic IP with the Zynq UltraScale+ processing system via a high-speed AXI-Stream interface.
 
@@ -29,7 +29,7 @@ The accelerator integrates the custom Systolic IP with the Zynq UltraScale+ proc
 * **Target Platform**: AMD/Xilinx Kria KV260 Vision AI Starter Kit
 * **OS**: Ubuntu Linux (ARM Cortex-A53)
 
-## 📁 Repository Structure
+## Repository Structure
 
 * `/bd`: Vivado Block Design files and SoC wrappers.
 * `/custom_ip`: Packaged custom AXI IP.
@@ -40,7 +40,7 @@ The accelerator integrates the custom Systolic IP with the Zynq UltraScale+ proc
 
 ---
 
-## 💻 Installation & Usage
+## Installation & Usage
 
 **1. Clone the repository:**
 ```bash
@@ -68,7 +68,7 @@ sudo ./gemm_accel
 
 ---
 
-## 📊 Implementation Results
+## Implementation Results
 
 The following metrics confirm that the design meets all timing constraints and is optimized for the KV260 target device.
 
@@ -81,26 +81,16 @@ The following metrics confirm that the design meets all timing constraints and i
 
 ---
 
-## 📈 Expected Output
+##  Expected Output
 
 Upon successful execution, the terminal verifies the matrix multiplication results against a CPU-based golden model and outputs the performance speedup.
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are greatly appreciated. Please fork the repo, create a feature branch, and open a Pull Request.
 
-## 📄 License
+## License
 
 Distributed under the MIT License. See `LICENSE` file for more information.
-
-```
-
-### 💡 Lưu ý nhỏ cho bạn:
-1. **Đường dẫn ảnh:** Mình đang để mặc định là `images/tên_file.png`. Nếu bạn để ảnh trong thư mục `images/` thì nhớ đổi tên trong README thành `images/tên_file.png` nhé.
-2. **Kiểm tra ảnh:** Sau khi đẩy lên GitHub, nếu ảnh không hiển thị, hãy kiểm tra xem tên file có bị sai chữ hoa/thường (case-sensitive) không, vì trên Linux/GitHub, `Timing.png` và `timing.png` là hai file khác nhau đấy! 
-
-Chúc bạn có một kho code GitHub cực kỳ ấn tượng!
-
-```
