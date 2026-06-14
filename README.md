@@ -50,13 +50,16 @@ cd YourRepoName
 ```
 
 **2. Rebuild the Vivado Project:**
-
+You can restore the project using the Vivado Command Line Interface (recommended):
 ```bash
 vivado -mode batch -source scripts/build_project.tcl
 
 ```
+Alternatively, you can open the Vivado GUI, navigate to the Tcl Console, cd into the cloned repository, and type source scripts/build_project.tcl.
 
-**3. Execution:**
+**3. Deploy on Target Board (KV260):
+Load the generated bitstream into the FPGA fabric using the xmutil tool or your preferred FPGA manager on Ubuntu.
+**4. Execution:**
 Navigate to `EmbeddedCodeC`, compile, and run on the KV260:
 
 ```bash
@@ -65,7 +68,12 @@ gcc -O3 run.c FPGA_Driver.c -o gemm_accel
 sudo ./gemm_accel
 
 ```
+**5. Execute the Accelerator:
+Run the application with root privileges (required for /dev/mem access). The program will generate random matrices, run the CPU Golden Model, execute the FPGA Ping-Pong pipeline, and output the Speedup performance metric.
 
+```bash
+sudo ./gemm_accel
+```
 ---
 
 ## Implementation Results
