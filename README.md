@@ -6,10 +6,12 @@ This repository contains the complete hardware/software co-design for a custom *
 ## Core Features
 
 * **16x16 Systolic Array Architecture**: A highly optimized processing element (PE) grid designed for high-throughput Multiply-Accumulate (MAC) operations.
+* **Hardware-Constrained Tiling (64x64)**: Built to map large-scale matrices onto a fixed $64 \times 64$ BRAM fabric, utilizing custom software tiling to overcome local memory size limitations.
 * **Dual AXI DMA Network**: Eliminates bus bottlenecks. `axi_dma_0` handles Input matrices (MM2S), while `axi_dma_1` parallelly handles Weights (MM2S) and Output results (S2MM).
-* **Asynchronous Ping-Pong Pipelining**: The ARM CPU pre-fetches and pre-loads the next data tile into a standby memory bank while the FPGA computes the current bank.
-* **Linux Userspace Driver (UIO)**: Achieves zero-copy bypass by mapping physical addresses directly to the C application.
-* **Software Tiling & Zero-Padding**: Automatically chunks arbitrary-sized matrices to fit hardware limits without computational errors.
+* **Asynchronous Ping-Pong Pipelining**: The ARM CPU pre-fetches and pre-loads the next data tile into a standby memory bank while the FPGA computes the current bank. This ensures 100% hardware utilization.
+* **Linux Userspace Driver (UIO)**: Achieves zero-copy bypass by mapping physical addresses directly to the C application, utilizing ARM Assembly (`dmb ish`) for strict hardware memory synchronization.
+* **Zero-Padding Logic**: Automatically applies zero-padding to edge-case matrix tiles to ensure alignment with systolic array dimensions without inducing computational errors.
+
 
 ---
 
@@ -21,7 +23,7 @@ The accelerator integrates the custom Systolic IP with the Zynq UltraScale+ proc
 
 ---
 
-## 🛠️ Built With
+## Built With
 
 * **Hardware Description Language**: Verilog (IEEE 1364-2005)
 * **EDA Tool**: Xilinx Vivado 2025.1
