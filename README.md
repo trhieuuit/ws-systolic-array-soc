@@ -48,8 +48,8 @@ The accelerator integrates the custom Systolic IP with the Zynq UltraScale+ proc
 
 **1. Clone the repository:**
 ```bash
-git clone [https://github.com/YourUsername/YourRepoName.git](https://github.com/YourUsername/YourRepoName.git)
-cd YourRepoName
+git clone [https://github.com/trhieuuit/ws-systolic-array-soc.git]
+cd ws-systolic-array-soc
 
 ```
 
