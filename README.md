@@ -18,7 +18,7 @@ This repository contains the complete hardware/software co-design for a custom *
 ## System Architecture
 
 The accelerator integrates the custom Systolic IP with the Zynq UltraScale+ processing system via a high-speed AXI-Stream interface.
-
+![System Architecture](images/architecture.png)
 ![Block Design](images/block_design.png)
 
 ---
